@@ -17,12 +17,19 @@ public class CommandLineParameters {
 				"Shutdown random VM within FCO.");
 		// Set option r to take maximum of 4 arguments
 		vmShutdown.setArgs(4);
-		vmShutdown
-				.setArgName("cloudusername, cloudpassword, cloudUUID, cloudapiurl");
+		vmShutdown.setArgName("cloudusername, cloudpassword, vmpassword, host");
 		options.addOption(vmShutdown);
-		options.addOption("b", "bcd", true, "Second Parameter");
+		
+		Option vmStressCPU = new Option("s", "stresscpu", true,
+				"Stress VM CPU");
+		// Set option s to take maximum of 4 arguments
+		vmStressCPU.setArgs(4);
+		vmStressCPU.setArgName("cores, stresstime, cloudUUID, cloudapiurl");
+		options.addOption(vmStressCPU);
+		
 		options.addOption("f", "file", true, "Load from properties file");
 		options.addOption("h", "help", false, "Shows help");
+		options.addOption("m", "stressmem", false, "Stress VM Memory");
 
 		try {
 			CommandLine commandLine = parser.parse(options, args);
@@ -43,10 +50,18 @@ public class CommandLineParameters {
 			}
 
 			if (commandLine.hasOption("f")) {
-				String argument = (String) commandLine
-						.getParsedOptionValue("f");
 				ReadConfig readconfigfile = new ReadConfig();
 				readconfigfile.readconfig();
+			}
+			if (commandLine.hasOption("s")) {
+				String[] argument = commandLine.getOptionValues("s");
+				String cores = argument[0];
+				String stresstime = argument[1];
+				String vmpassword = argument[2];
+				String host = argument[3];
+				System.out.println("Executing CPU stress on VM");
+				VMcpuStress cpustress = new VMcpuStress();
+				cpustress.stresscpu(cores,stresstime,vmpassword,host);
 			}
 
 			if (commandLine.hasOption("h")) {
