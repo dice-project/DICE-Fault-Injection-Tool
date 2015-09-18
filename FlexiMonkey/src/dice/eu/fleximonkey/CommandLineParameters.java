@@ -42,10 +42,11 @@ public class CommandLineParameters {
 
 			}
 
-			if (commandLine.hasOption("b")) {
+			if (commandLine.hasOption("f")) {
 				String argument = (String) commandLine
-						.getParsedOptionValue("b");
-				System.out.println(argument);
+						.getParsedOptionValue("f");
+				ReadConfig readconfigfile = new ReadConfig();
+				readconfigfile.readconfig();
 			}
 
 			if (commandLine.hasOption("h")) {

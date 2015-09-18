@@ -1,10 +1,8 @@
 package dice.eu.fleximonkey;
 import java.io.IOException;
 
-public class FlexiMonkeyMain {
-	
-	public static void main(String[] args) {
-
+public class ReadConfig {
+	public void readconfig(){
 		FlexiMonkeyReadConfig properties = new FlexiMonkeyReadConfig();
 		try {
 			properties.getPropValues();
