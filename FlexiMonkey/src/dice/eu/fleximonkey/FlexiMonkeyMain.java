@@ -3,10 +3,15 @@ import java.io.IOException;
 
 public class FlexiMonkeyMain {
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 
 		FlexiMonkeyReadConfig properties = new FlexiMonkeyReadConfig();
-		properties.getPropValues();
+		try {
+			properties.getPropValues();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		VMState vmstate = VMState.valueOf(properties.action);
 		
