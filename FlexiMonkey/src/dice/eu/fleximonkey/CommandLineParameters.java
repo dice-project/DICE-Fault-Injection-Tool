@@ -24,12 +24,18 @@ public class CommandLineParameters {
 				"Stress VM CPU");
 		// Set option s to take maximum of 4 arguments
 		vmStressCPU.setArgs(4);
-		vmStressCPU.setArgName("cores, stresstime, cloudUUID, cloudapiurl");
+		vmStressCPU.setArgName("cores, stresstime, vmpassword, host");
 		options.addOption(vmStressCPU);
+		
+		Option vmStressMem = new Option("m", "stressmem", true,
+				"Stress VM Memory");
+		// Set option m to take maximum of 5 arguments
+		vmStressMem.setArgs(5);
+		vmStressMem.setArgName("cores, stresstime, vmpassword, host,memorytesterloops");
+		options.addOption(vmStressMem);
 		
 		options.addOption("f", "file", true, "Load from properties file");
 		options.addOption("h", "help", false, "Shows help");
-		options.addOption("m", "stressmem", false, "Stress VM Memory");
 
 		try {
 			CommandLine commandLine = parser.parse(options, args);
@@ -62,6 +68,17 @@ public class CommandLineParameters {
 				System.out.println("Executing CPU stress on VM");
 				VMcpuStress cpustress = new VMcpuStress();
 				cpustress.stresscpu(cores,stresstime,vmpassword,host);
+			}
+			if (commandLine.hasOption("m")) {
+				String[] argument = commandLine.getOptionValues("s");
+				String cores = argument[0];
+				String stresstime = argument[1];
+				String vmpassword = argument[2];
+				String host = argument[3];
+				String memorytesterloops = argument[4];
+				System.out.println("Executing CPU stress on VM");
+				VMmemoryStress vmmemstress = new VMmemoryStress();
+				vmmemstress.stressmemory(cores,stresstime,vmpassword,host,memorytesterloops);	
 			}
 
 			if (commandLine.hasOption("h")) {
