@@ -8,7 +8,13 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class CommandLineParameters {
+	private static final Logger log = Logger.getLogger( CommandLineParameters.class.getName() );
+
+
 	public static void main(String[] args) {
 
 		CommandLineParser parser = new BasicParser();
@@ -39,6 +45,7 @@ public class CommandLineParameters {
 
 		try {
 			CommandLine commandLine = parser.parse(options, args);
+			 log.log( Level.INFO, "Looking for command line option");
 
 			if (commandLine.hasOption("r")) {
 
@@ -51,13 +58,15 @@ public class CommandLineParameters {
 				FCOListVMs listvms = new FCOListVMs();
 				listvms.listvms(cloudusername, cloudpassword, cloudapiurl,
 						cloudUUID);
-				System.out.println("Executing stop random VM");
+				 log.log( Level.INFO, "Executing stop random VM");
 
 			}
 
 			if (commandLine.hasOption("f")) {
 				ReadConfig readconfigfile = new ReadConfig();
 				readconfigfile.readconfig();
+				 log.log( Level.INFO, "Reading Config File");
+
 			}
 			if (commandLine.hasOption("s")) {
 				String[] argument = commandLine.getOptionValues("s");
@@ -65,9 +74,10 @@ public class CommandLineParameters {
 				String stresstime = argument[1];
 				String vmpassword = argument[2];
 				String host = argument[3];
-				System.out.println("Executing CPU stress on VM");
 				VMcpuStress cpustress = new VMcpuStress();
 				cpustress.stresscpu(cores,stresstime,vmpassword,host);
+				log.log( Level.INFO, "Executing CPU stress on VM");
+
 			}
 			if (commandLine.hasOption("m")) {
 				String[] argument = commandLine.getOptionValues("s");
@@ -76,19 +86,22 @@ public class CommandLineParameters {
 				String vmpassword = argument[2];
 				String host = argument[3];
 				String memorytesterloops = argument[4];
-				System.out.println("Executing CPU stress on VM");
 				VMmemoryStress vmmemstress = new VMmemoryStress();
-				vmmemstress.stressmemory(cores,stresstime,vmpassword,host,memorytesterloops);	
+				vmmemstress.stressmemory(cores,stresstime,vmpassword,host,memorytesterloops);
+				 log.log( Level.INFO, "Executing Memory stress on VM");
+
 			}
 
 			if (commandLine.hasOption("h")) {
 				HelpFormatter formatter = new HelpFormatter();
 				formatter.printHelp("CommandLineParameters", options);
+				 log.log( Level.INFO, "Opening comandline help");
+
 			}
 
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			 log.log( Level.SEVERE, "Unable to find selected option", e.toString());
+			
 		}
 
 	}

@@ -4,6 +4,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -17,6 +19,8 @@ import com.extl.jade.user.UserAPI;
 import com.extl.jade.user.UserService;
 
 public class FCOstopVM {
+	private static final Logger log = Logger.getLogger( FCOstopVM.class.getName() );
+
 	@SuppressWarnings("deprecation")
 	public void stopvm(String vmuuid, String cloudusername,
 			String cloudpassword, String cloudapiurl, String cloudUUID) {
@@ -33,13 +37,12 @@ public class FCOstopVM {
 		} catch (MalformedURLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-			System.out.println("unable to get wsdl");
+			 log.log( Level.SEVERE, "Unable to get FCO WSDL");
 		}
 
 		// Get the UserAPI
 		UserAPI api = new UserAPI(url, new QName(
 				"http://extility.flexiant.net", "UserAPI"));
-		System.out.println("getting user API");
 		// and set the service port on the service
 		service = api.getUserServicePort();
 
@@ -57,7 +60,6 @@ public class FCOstopVM {
 				cloudpassword);
 		// Get date time for job creation
 		try {
-			System.out.println("in date section");
 			GregorianCalendar gregorianCalendar = new GregorianCalendar();
 			DatatypeFactory datatypeFactory = null;
 			datatypeFactory = DatatypeFactory.newInstance();
@@ -86,17 +88,16 @@ public class FCOstopVM {
 
 			// Send stop command
 			// Can also be scheduled for time in future.
-			System.out.println("Sending stop command for:  " + vmuuid);
+			log.log( Level.INFO, "Sending stop command for:  " + vmuuid);
 			stopServer = service.changeServerStatus(vmuuid,
 					ServerStatus.STOPPED, true, new ResourceMetadata(), now);
 			// waits till job completes or fails
 			service.waitForJob(stopServer.getResourceUUID(), false);
-
-			System.out.println("Server stopped:  " + vmuuid);
+			log.log( Level.INFO, "Server stopped:  " + vmuuid);
 
 		} catch (Exception e) {
-			System.out
-					.println("Unable to send stop job or server is already stopped");
+			log.log( Level.SEVERE, "Unable to send stop job or server is already stopped");
+
 			// Perhaps update to check state currently?
 			// e.printStackTrace();
 

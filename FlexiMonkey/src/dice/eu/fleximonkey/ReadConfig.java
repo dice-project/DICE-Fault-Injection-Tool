@@ -1,13 +1,17 @@
 package dice.eu.fleximonkey;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ReadConfig {
+	private static final Logger log = Logger.getLogger( ReadConfig.class.getName() );
+
 	public void readconfig(){
 		FlexiMonkeyReadConfig properties = new FlexiMonkeyReadConfig();
 		try {
 			properties.getPropValues();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			 log.log( Level.SEVERE, "Error getting file values", e.toString());
 			e.printStackTrace();
 		}
 		
@@ -17,7 +21,7 @@ public class ReadConfig {
 		switch (vmstate) {
 		case stresscpu:
 			//Start Stress execute code
-			System.out.println("Executing CPU stress on VM");
+			log.log( Level.INFO, "Executing CPU stress on VM");
 			VMcpuStress cpustress = new VMcpuStress();
 			cpustress.stresscpu(properties.cores, properties.stresstime, properties.vmpassword, properties.host);
 		break;	
@@ -25,17 +29,18 @@ public class ReadConfig {
         case stopVM:
         	FCOListVMs listvms = new FCOListVMs();
         	listvms.listvms(properties.cloudusername, properties.cloudpassword, properties.cloudapiurl, properties.cloudUUID);
-        	System.out.println("Executing stop random VM");
+			log.log( Level.INFO, "Executing Stop FCO VM");
         break;
         case stressmem:
-        	System.out.println("Executing Mem stress on VM");
+			log.log( Level.INFO, "Executing Memory stress on VM");
 			VMmemoryStress vmmemstress = new VMmemoryStress();
 			vmmemstress.stressmemory(properties.cores, properties.stresstime, properties.vmpassword, properties.host, properties.memorytesterloops);	
         break;
         
        
         default:
-        	System.out.println("Error no option selected!!");
+			 log.log( Level.SEVERE, "Error no option selected!!");
+
         break;	
 	  }
 

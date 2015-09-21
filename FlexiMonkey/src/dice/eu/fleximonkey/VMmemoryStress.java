@@ -3,8 +3,11 @@ package dice.eu.fleximonkey;
 import com.jcraft.jsch.*;
 
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class VMmemoryStress {
+	private static final Logger log = Logger.getLogger( VMmemoryStress.class.getName() );
 
 	public void stressmemory(String cores, String time, String vmpassword,
 			String host, String memorytesterloops) {
@@ -32,6 +35,7 @@ public class VMmemoryStress {
 			config.put("StrictHostKeyChecking", "no");
 			session.setConfig(config);
 			session.connect();
+			log.log( Level.INFO, "Attempting to SSH to VM with ip " + host);
 
 			// Look at ways to get number of CPU's to run test.
 			// String command="cat /proc/cpuinfo | grep processor | wc -l";
@@ -76,7 +80,8 @@ public class VMmemoryStress {
 			if (info == null) {
 				// command2="sudo stress -m 1 --vm-bytes 512M -t 10s";
 				command2 = "sudo apt-get -q -y install memtester";
-				System.out.print("Stress tool not found..Installing......");
+				log.log( Level.INFO, "MemTester tool not found..Installing......");
+
 			}
 
 			// check not getting called with error
@@ -85,11 +90,13 @@ public class VMmemoryStress {
 				// command2="sudo apt-get -q -y install memtester";
 				// command2=" sudo stress -c 1 -i 2 -m 2 --vm-bytes 512M -t 2m";
 				command2 = " sudo memtester 512M " + memorytesterloops;
-				System.out.println("memtester loop number: "
+				log.log( Level.INFO, "memtester loop number: "
 						+ memorytesterloops);
+
+				
 				// command2="sudo stress -m 1 --vm-bytes 512M -t 2m";
 				// command2="stress -c "+ cores + " -t "+ time;
-				System.out.print("Stress tool found..running test......");
+				log.log( Level.INFO, "MemTest tool found..running test......");
 			}
 
 			Channel channel2 = session.openChannel("exec");
@@ -122,7 +129,7 @@ public class VMmemoryStress {
 			channel2.disconnect();
 			session.disconnect();
 		} catch (Exception e) {
-			System.out.println(e);
+			log.log( Level.SEVERE, "Unable to SSH to VM", e.toString());
 		}
 	}
 }
