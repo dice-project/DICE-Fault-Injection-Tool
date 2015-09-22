@@ -35,7 +35,6 @@ public class FCOListVMs {
 		try {
 			url = new URL(com.extl.jade.user.UserAPI.class.getResource("."),
 					cloudapiurl);
-			System.out.println("GOT WSDL");
 		} catch (MalformedURLException e1) {
 		
 			e1.printStackTrace();
@@ -45,7 +44,6 @@ public class FCOListVMs {
 		// Get the UserAPI
 		UserAPI api = new UserAPI(url, new QName(
 				"http://extility.flexiant.net", "UserAPI"));
-		System.out.println("getting user API");
 		// and set the service port on the service
 		service = api.getUserServicePort();
 

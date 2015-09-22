@@ -33,7 +33,6 @@ public class FCOstopVM {
 		try {
 			url = new URL(com.extl.jade.user.UserAPI.class.getResource("."),
 					cloudapiurl);
-			System.out.println("GOT WSDL");
 		} catch (MalformedURLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
