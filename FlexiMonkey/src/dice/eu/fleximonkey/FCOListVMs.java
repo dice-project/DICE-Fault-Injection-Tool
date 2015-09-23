@@ -27,6 +27,10 @@ public class FCOListVMs {
 
 	public void listvms(String cloudusername, String cloudpassword,
 			String cloudapiurl, String cloudUUID) {
+		
+		//tag used to not shutdown server
+		String resourceKeyName = "noshutdown";
+		
 
 		UserService service;
 
@@ -80,7 +84,6 @@ public class FCOListVMs {
 
 			// Add the filter condition to the query
 			sf.getFilterConditions().add(fc);
-
 			// Set a limit to the number of results
 			QueryLimit lim = new QueryLimit();
 			lim.setMaxRecords(1000);
@@ -93,7 +96,22 @@ public class FCOListVMs {
 			randomGenerator = new Random();
 			for (Object o : result.getList()) {
 				Server s = ((Server) o);
-				list.add(s.getResourceUUID());
+				String serverUUID = s.getResourceUUID().toString();
+				//check if no_shutdowntag is added
+				FCOCheckKey checkkey = new FCOCheckKey();
+				checkkey.listvmkeys(cloudusername, cloudpassword, cloudapiurl, cloudUUID, serverUUID);
+				
+				 ArrayList<String> checkedlist = new ArrayList<String>();
+				 checkedlist = checkkey.getList();
+				if(checkedlist.contains(resourceKeyName))
+				{
+						
+					log.log( Level.INFO, "Key noshutdown found, not adding to list");
+				}
+					else
+				{
+	        	list.add(s.getResourceUUID());
+			}
 				log.log( Level.INFO, "Looking for VM to be stopped for customer: " + s.getCustomerUUID());
 				log.log( Level.INFO, "Server "+ s.getResourceUUID() + " is in state " + s.getStatus());
 
