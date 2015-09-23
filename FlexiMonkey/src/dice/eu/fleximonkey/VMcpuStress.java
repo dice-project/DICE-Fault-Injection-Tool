@@ -24,6 +24,7 @@ public class VMcpuStress {
 			Session session = jsch.getSession(user, host, 22);
 
 			// SSH key config - NOTE Needs tested/way to select between them
+			//Also needed implemeted in comand line option
 			/*
 			 * String privateKey = ".ssh/id_rsa"; jsch.addIdentity(privateKey);
 			 * System.out.println("identity added ");
@@ -78,19 +79,19 @@ public class VMcpuStress {
 			channel.disconnect();
 			String command2 = null;
 
-			// Checking all OS versions centos, Ubuntu Debian.
+			// Currently only runs for Ubuntu
+			//Will need check for other OS/commands 
 			if (info == null) {
 
 				command2 = "sudo apt-get -q -y install stress";
 				log.log( Level.INFO, "Stress tool not found..Installing......");
-
 			}
 
 			// check not getting called with error
 
 			else if (info.equals("install ok installed")) {
 				command2 = "stress -c " + cores + " -t " + time;
-				log.log( Level.INFO, "Stress tool not found..running test......");
+				log.log( Level.INFO, "Stress tool found..running test......");
 			}
 
 			Channel channel2 = session.openChannel("exec");
