@@ -24,8 +24,9 @@ import com.extl.jade.user.UserAPI;
 import com.extl.jade.user.UserService;
 
 public class FCOCheckKey {
-	private static final Logger log = Logger.getLogger( FCOCheckKey.class.getName() );
-	  public ArrayList<String> listString = new ArrayList<String>();
+	private static final Logger log = Logger.getLogger(FCOCheckKey.class.getName());
+	public ArrayList<String> listString = new ArrayList<String>();
+
 	public void listvmkeys(String cloudusername, String cloudpassword,
 			String cloudapiurl, String cloudUUID, String serverUUID) {
 
@@ -37,9 +38,8 @@ public class FCOCheckKey {
 			url = new URL(com.extl.jade.user.UserAPI.class.getResource("."),
 					cloudapiurl);
 		} catch (MalformedURLException e1) {
-		
-			e1.printStackTrace();
-			 log.log( Level.SEVERE, "Unable to get FCO WSDL");
+
+			log.log(Level.SEVERE, "Unable to get FCO WSDL");
 		}
 
 		// Get the UserAPI
@@ -61,53 +61,53 @@ public class FCOCheckKey {
 		portBP.getRequestContext().put(BindingProvider.PASSWORD_PROPERTY,
 				cloudpassword);
 
-		 try {
-	        	
-	            // Create an FQL filter and a filter condition
-	            SearchFilter sf = new SearchFilter();
-	            FilterCondition fc = new FilterCondition();
-	  
-	            // set the condition type
-	            fc.setCondition(Condition.IS_EQUAL_TO);
+		try {
 
-	            // the field to be matched
-	            fc.setField("resourceUUID");
-	            
-	            // and a list of values
-	            fc.getValue().add(serverUUID);
+			// Create an FQL filter and a filter condition
+			SearchFilter sf = new SearchFilter();
+			FilterCondition fc = new FilterCondition();
 
+			// set the condition type
+			fc.setCondition(Condition.IS_EQUAL_TO);
 
-	            // Add the filter condition to the query
-	            sf.getFilterConditions().add(fc);
-	       
-	            // Set a limit to the number of results
-	            QueryLimit lim = new QueryLimit();
-	            lim.setMaxRecords(1000);
-	            lim.setLoadChildren(true);
-	          
-	            ListResult result = service.listResources(sf, lim, ResourceType.SERVER);
-	            // Call the service to execute the query
-	          
-	            for(Object o : result.getList()) {
-	          	  Server s = ((Server)o);           
-		        	
-	          	 
-		        	List<ResourceKey> resourcekey = s.getResourceKey();
-		        	 System.out.println("KEYNAMES " + s.getResourceKey());
-		        	for(Object oR : resourcekey) {
-			         ResourceKey r = ((ResourceKey)oR);
-			          listString.add(r.getName().toString());
-		        	}
-		        	
-		        	 System.out.println("KEYNAMES " + listString);
-	            }
-	        } catch (Exception e) {
-	             
-	            e.printStackTrace();
-	        }
-		 
+			// the field to be matched
+			fc.setField("resourceUUID");
+
+			// and a list of values
+			fc.getValue().add(serverUUID);
+
+			// Add the filter condition to the query
+			sf.getFilterConditions().add(fc);
+
+			// Set a limit to the number of results
+			QueryLimit lim = new QueryLimit();
+			lim.setMaxRecords(1000);
+			lim.setLoadChildren(true);
+
+			ListResult result = service.listResources(sf, lim,
+					ResourceType.SERVER);
+			// Call the service to execute the query
+
+			for (Object o : result.getList()) {
+				Server s = ((Server) o);
+
+				log.log(Level.INFO,
+						"Listing VM keyys for:" + s.getResourceUUID());
+
+				List<ResourceKey> resourcekey = s.getResourceKey();
+				for (Object oR : resourcekey) {
+					ResourceKey r = ((ResourceKey) oR);
+					listString.add(r.getName().toString());
+				}
+				log.log(Level.INFO, "Listing VM keyys for:" + listString);
+			}
+		} catch (Exception e) {
+			log.log(Level.SEVERE, "Unable to list keys error: " + e.toString());
+		}
+
 	}
-	 public ArrayList<String> getList() {
-	       return listString;
-	   }
+
+	public ArrayList<String> getList() {
+		return listString;
+	}
 }
