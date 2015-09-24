@@ -1,5 +1,5 @@
 # DICE-Fault-Injection-Tool
-DICE Fault Injection tool, used to generate faults within Virtual Machines and Cloud Provider.
+DICE Fault Injection tool, used to generate faults within Virtual Machines and a FCO Cloud Provider.
 
 Current User/VM level faults:
 * Shutdown random VM (Ignore tagged VM with "noshutdown" in random selection)
