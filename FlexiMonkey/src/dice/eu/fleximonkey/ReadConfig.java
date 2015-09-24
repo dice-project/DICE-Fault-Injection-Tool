@@ -37,6 +37,8 @@ public class ReadConfig {
 			vmmemstress.stressmemory(properties.host,properties.vmpassword, properties.memorytesterloops, properties.memeorytotal);	
         break;
         
+        //Update with new external access block code
+        
        
         default:
 			 log.log( Level.SEVERE, "Error no option selected!!");
