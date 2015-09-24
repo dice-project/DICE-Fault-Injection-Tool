@@ -2,7 +2,7 @@
 DICE Fault Injection tool, used to generate faults within Virtual Machines and Cloud Provider.
 
 Current User/VM level faults:
-* Shutdown random VM (Ignore tagged VM with "noshutdown"
+* Shutdown random VM (Ignore tagged VM with "noshutdown" in random selection)
 * High CPU for VM
 * High Memeory usage for VM
 
