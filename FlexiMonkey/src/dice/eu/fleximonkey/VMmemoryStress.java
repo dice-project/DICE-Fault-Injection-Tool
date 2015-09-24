@@ -9,8 +9,7 @@ import java.util.logging.Logger;
 public class VMmemoryStress {
 	private static final Logger log = Logger.getLogger( VMmemoryStress.class.getName() );
 
-	public void stressmemory(String cores, String time, String vmpassword,
-			String host, String memorytesterloops) {
+	public void stressmemory(String host, String vmpassword,String memorytesterloops,String memeorytotal) {
 		try {
 
 			String info = null;
@@ -89,7 +88,9 @@ public class VMmemoryStress {
 			else if (info.equals("install ok installed")) {
 				// command2="sudo apt-get -q -y install memtester";
 				// command2=" sudo stress -c 1 -i 2 -m 2 --vm-bytes 512M -t 2m";
-				command2 = " sudo memtester 512M " + memorytesterloops;
+				command2 = " sudo memtester "+ memeorytotal +" "+ memorytesterloops;
+
+				//command2 = " sudo memtester 512M " + memorytesterloops;
 				log.log( Level.INFO, "memtester loop number: "
 						+ memorytesterloops);
 

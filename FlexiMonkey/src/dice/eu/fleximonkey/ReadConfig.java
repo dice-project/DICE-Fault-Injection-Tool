@@ -34,7 +34,7 @@ public class ReadConfig {
         case stressmem:
 			log.log( Level.INFO, "Executing Memory stress on VM");
 			VMmemoryStress vmmemstress = new VMmemoryStress();
-			vmmemstress.stressmemory(properties.cores, properties.stresstime, properties.vmpassword, properties.host, properties.memorytesterloops);	
+			vmmemstress.stressmemory(properties.host,properties.vmpassword, properties.memorytesterloops, properties.memeorytotal);	
         break;
         
        

@@ -35,9 +35,9 @@ public class CommandLineParameters {
 		
 		Option vmStressMem = new Option("m", "stressmem", true,
 				"Stress VM Memory");
-		// Set option m to take maximum of 5 arguments
-		vmStressMem.setArgs(5);
-		vmStressMem.setArgName("cores, stresstime, vmpassword, host,memorytesterloops");
+		// Set option m to take maximum of 4 arguments
+		vmStressMem.setArgs(4);
+		vmStressMem.setArgName("host,vmpassword,memorytesterloops,memeorytotal");
 		options.addOption(vmStressMem);
 		
 		options.addOption("f", "file", true, "Load from properties file");
@@ -80,14 +80,13 @@ public class CommandLineParameters {
 
 			}
 			if (commandLine.hasOption("m")) {
-				String[] argument = commandLine.getOptionValues("s");
-				String cores = argument[0];
-				String stresstime = argument[1];
-				String vmpassword = argument[2];
-				String host = argument[3];
-				String memorytesterloops = argument[4];
+				String[] argument = commandLine.getOptionValues("m");
+				String host = argument[0];
+				String vmpassword = argument[1];
+				String memorytesterloops = argument[2];
+				String memeorytotal = argument[3];
 				VMmemoryStress vmmemstress = new VMmemoryStress();
-				vmmemstress.stressmemory(cores,stresstime,vmpassword,host,memorytesterloops);
+				vmmemstress.stressmemory(host,vmpassword,memorytesterloops,memeorytotal);
 				 log.log( Level.INFO, "Executing Memory stress on VM");
 
 			}

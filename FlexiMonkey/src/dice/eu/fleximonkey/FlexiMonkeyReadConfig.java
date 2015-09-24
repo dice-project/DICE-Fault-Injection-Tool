@@ -17,6 +17,7 @@ public class FlexiMonkeyReadConfig {
 	String cloudpassword = "";
 	String cloudUUID = "";
 	String memorytesterloops = "";
+	String memeorytotal = "";
 	InputStream inputStream;
 
 	public String getPropValues() throws IOException {
