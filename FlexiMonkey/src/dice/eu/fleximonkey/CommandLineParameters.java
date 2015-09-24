@@ -40,7 +40,14 @@ public class CommandLineParameters {
 		vmStressMem.setArgName("host,vmpassword,memorytesterloops,memeorytotal");
 		options.addOption(vmStressMem);
 		
+		Option blockfirewallOption = new Option("b", "blockfirewall", true, "Block external communication from Firewall");
+		// Set option 2 to take maximum of 2 arguments
+		blockfirewallOption.setArgs(2);
+		blockfirewallOption.setArgName("host,vmpassword");
+		options.addOption(blockfirewallOption);
+		
 		options.addOption("f", "file", true, "Load from properties file");
+		
 		options.addOption("h", "help", false, "Shows help");
 
 		try {
@@ -66,6 +73,15 @@ public class CommandLineParameters {
 				ReadConfig readconfigfile = new ReadConfig();
 				readconfigfile.readconfig();
 				 log.log( Level.INFO, "Reading Config File");
+
+			}
+			if (commandLine.hasOption("b")) {
+				String[] argument = commandLine.getOptionValues("b");
+				String host = argument[0];
+				String vmpassword = argument[1];
+				VMblockExternalTraffic blockfirewall = new VMblockExternalTraffic();
+				blockfirewall.blockfirewall(host, vmpassword);
+				 log.log( Level.INFO, "Setting firewall");
 
 			}
 			if (commandLine.hasOption("s")) {
