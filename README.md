@@ -11,5 +11,5 @@ Current User/VM level faults:
     $ -f,--file <arg> Load from properties file.
     > -h,--help Shows help.
     > -m,--stressmem <host,vmpassword,memorytesterloops,memeorytotal> Stress VM Memory.
-    * -r,--randomVM <cloudusername, cloudpassword, vmpassword, host> Shutdown random VM within FCO.
-    * -s,--stresscpu <cores, stresstime, vmpassword, host> Stress VM CPU.
+    > -r,--randomVM <cloudusername, cloudpassword, vmpassword, host> Shutdown random VM within FCO.
+    > -s,--stresscpu <cores, stresstime, vmpassword, host> Stress VM CPU.
