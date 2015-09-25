@@ -37,8 +37,11 @@ public class ReadConfig {
 			vmmemstress.stressmemory(properties.host,properties.vmpassword, properties.memorytesterloops, properties.memeorytotal);	
         break;
         
-        //Update with new external access block code
-        
+        case blockfirewall:
+			log.log( Level.INFO, "Executing Memory stress on VM");
+			VMblockExternalTraffic blockfirewall = new VMblockExternalTraffic();
+			blockfirewall.blockfirewall(properties.host,properties.vmpassword);	
+        break;        
        
         default:
 			 log.log( Level.SEVERE, "Error no option selected!!");
@@ -51,7 +54,8 @@ public class ReadConfig {
 	public enum VMState{
 		stresscpu,
 		stressmem,
-		stopVM
+		stopVM,
+		blockfirewall
 	}
 
 }
