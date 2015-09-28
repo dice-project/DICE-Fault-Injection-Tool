@@ -12,7 +12,6 @@ public class ReadConfig {
 			properties.getPropValues();
 		} catch (IOException e) {
 			 log.log( Level.SEVERE, "Error getting file values", e.toString());
-			e.printStackTrace();
 		}
 		
 		VMState vmstate = VMState.valueOf(properties.action);
@@ -45,7 +44,6 @@ public class ReadConfig {
        
         default:
 			 log.log( Level.SEVERE, "Error no option selected!!");
-
         break;	
 	  }
 
