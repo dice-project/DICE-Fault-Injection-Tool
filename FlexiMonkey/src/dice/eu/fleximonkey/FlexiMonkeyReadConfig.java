@@ -18,6 +18,7 @@ public class FlexiMonkeyReadConfig {
 	String cloudUUID = "";
 	String memorytesterloops = "";
 	String memeorytotal = "";
+	String service ="";
 	InputStream inputStream;
 
 	public String getPropValues() throws IOException {
@@ -47,6 +48,7 @@ public class FlexiMonkeyReadConfig {
 			cloudpassword = prop.getProperty("cloudpassword");
 			cloudUUID = prop.getProperty("cloudUUID");
 			memorytesterloops = prop.getProperty("memorytesterloops");
+			service = prop.getProperty(service);
 
 		} catch (Exception e) {
 			System.out.println("Exception: " + e);
