@@ -46,6 +46,12 @@ public class CommandLineParameters {
 		blockfirewallOption.setArgName("host,vmpassword");
 		options.addOption(blockfirewallOption);
 		
+		Option stopserviceOption = new Option("k", "kill service", true, "Stop service running on VM");
+		// Set maximum of 3 arguments
+		stopserviceOption.setArgs(3);
+		stopserviceOption.setArgName("host,vmpassword,service");
+		options.addOption(stopserviceOption);
+		
 		options.addOption("f", "file", true, "Load from properties file");
 		
 		options.addOption("h", "help", false, "Shows help");
@@ -104,6 +110,16 @@ public class CommandLineParameters {
 				VMmemoryStress vmmemstress = new VMmemoryStress();
 				vmmemstress.stressmemory(host,vmpassword,memorytesterloops,memeorytotal);
 				 log.log( Level.INFO, "Executing Memory stress on VM");
+
+			}
+			if (commandLine.hasOption("k")) {
+				String[] argument = commandLine.getOptionValues("k");
+				String host = argument[0];
+				String vmpassword = argument[1];
+				String service = argument[2];
+				VMstopService vmstopservice = new VMstopService();
+				vmstopservice.stopservice(host, vmpassword, service);
+				log.log( Level.INFO, "Executing Stop service on VM");
 
 			}
 

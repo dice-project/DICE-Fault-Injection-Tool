@@ -41,7 +41,11 @@ public class ReadConfig {
 			VMblockExternalTraffic blockfirewall = new VMblockExternalTraffic();
 			blockfirewall.blockfirewall(properties.host,properties.vmpassword);	
         break;
-        
+        case stopservice:
+			log.log( Level.INFO, "Executing stop service on VM");
+			VMstopService vmstopservice = new VMstopService();
+			vmstopservice.stopservice(properties.host,properties.vmpassword, properties.service);	
+        break; 
    
        
         default:
@@ -55,7 +59,8 @@ public class ReadConfig {
 		stresscpu,
 		stressmem,
 		stopVM,
-		blockfirewall
+		blockfirewall,
+		stopservice
 	}
 
 }
