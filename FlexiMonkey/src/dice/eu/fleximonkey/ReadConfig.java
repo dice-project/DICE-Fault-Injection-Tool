@@ -37,10 +37,12 @@ public class ReadConfig {
         break;
         
         case blockfirewall:
-			log.log( Level.INFO, "Executing Memory stress on VM");
+			log.log( Level.INFO, "Executing blockfirwall on VM");
 			VMblockExternalTraffic blockfirewall = new VMblockExternalTraffic();
 			blockfirewall.blockfirewall(properties.host,properties.vmpassword);	
-        break;        
+        break;
+        
+   
        
         default:
 			 log.log( Level.SEVERE, "Error no option selected!!");
