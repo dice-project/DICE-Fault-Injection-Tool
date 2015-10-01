@@ -9,6 +9,7 @@ Current User/VM level faults:
 * High CPU for VM (Using Stress tool)
 * High Memeory usage for VM (Using Memtest tool)
 * Block VM external access (Using ufw)
+* Stop service running on VM
 
 ### CommandLineParameters:
 
@@ -18,3 +19,4 @@ Current User/VM level faults:
     > -r,--randomVM <cloudusername, cloudpassword, vmpassword, host> Shutdown random VM within FCO.
     > -s,--stresscpu <cores, stresstime, vmpassword, host> Stress VM CPU.
     > -b,--blockfirewall <host, vmpassword> Block external communication from Firewall.
+    > -k,--killservice <host, vmpassword, service> Stop service running on VM.
