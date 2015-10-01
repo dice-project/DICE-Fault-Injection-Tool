@@ -46,7 +46,7 @@ public class CommandLineParameters {
 		blockfirewallOption.setArgName("host,vmpassword");
 		options.addOption(blockfirewallOption);
 		
-		Option stopserviceOption = new Option("k", "kill service", true, "Stop service running on VM");
+		Option stopserviceOption = new Option("k", "killservice", true, "Stop service running on VM");
 		// Set maximum of 3 arguments
 		stopserviceOption.setArgs(3);
 		stopserviceOption.setArgName("host,vmpassword,service");
