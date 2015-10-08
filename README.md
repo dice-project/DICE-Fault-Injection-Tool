@@ -10,13 +10,15 @@ Current User/VM level faults:
 * High Memeory usage for VM (Using Memtest tool)
 * Block VM external access (Using ufw)
 * Stop service running on VM
+* Shutdown random VM from whitelist provided by user
 
 ### CommandLineParameters:
 
     $ -f,--file <arg> Load from properties file.
     > -h,--help Shows help.
     > -m,--stressmem <host,vmpassword,memorytesterloops,memeorytotal> Stress VM Memory.
-    > -r,--randomVM <cloudusername, cloudpassword, vmpassword, host> Shutdown random VM within FCO.
+    > -r,--randomVM <cloudusername, cloudpassword, cloudUUID,cloudapiurl> Shutdown random VM within FCO.
     > -s,--stresscpu <cores, stresstime, vmpassword, host> Stress VM CPU.
     > -b,--blockfirewall <host, vmpassword> Block external communication from Firewall.
     > -k,--killservice <host, vmpassword, service> Stop service running on VM.
+    > -w,--whitelist <cloudusername, cloudpassword, vmpassword, filepath> Shutdown random VM within FCO from testfile list
