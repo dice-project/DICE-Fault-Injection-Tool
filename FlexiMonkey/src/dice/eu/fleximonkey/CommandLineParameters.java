@@ -49,8 +49,14 @@ public class CommandLineParameters {
 		Option stopserviceOption = new Option("k", "killservice", true, "Stop service running on VM");
 		// Set maximum of 3 arguments
 		stopserviceOption.setArgs(3);
-		stopserviceOption.setArgName("host,vmpassword,service");
+		stopserviceOption.setArgName("cloudusername,vmpassword,service");
 		options.addOption(stopserviceOption);
+		
+		Option whitelistVMstopOption = new Option("w", "whiteliststop", true, "Stop VM from whitelist");
+		// Set maximum of 5 arguments
+		whitelistVMstopOption.setArgs(5);
+		whitelistVMstopOption.setArgName("cloudusername, cloudpassword, cloudUUID, cloudapiurl, filepath");
+		options.addOption(whitelistVMstopOption);
 		
 		options.addOption("f", "file", true, "Load from properties file");
 		
@@ -127,6 +133,20 @@ public class CommandLineParameters {
 				HelpFormatter formatter = new HelpFormatter();
 				formatter.printHelp("CommandLineParameters", options);
 				 log.log( Level.INFO, "Opening comandline help");
+
+			}
+			if (commandLine.hasOption("w")) {
+
+				String[] argument = commandLine.getOptionValues("w");
+				String cloudusername = argument[0];
+				String cloudpassword = argument[1];
+				String cloudUUID = argument[2];
+				String cloudapiurl = argument[3];
+				String filepath = argument[4];
+				// Logger to be added
+				WhiteListVMs whitelist = new WhiteListVMs();
+				whitelist.whitelistvms(cloudusername, cloudpassword, cloudapiurl,cloudUUID, filepath);
+				 log.log( Level.INFO, "Executing stop random VM from whitelist");
 
 			}
 

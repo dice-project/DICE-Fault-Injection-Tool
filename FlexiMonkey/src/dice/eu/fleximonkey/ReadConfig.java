@@ -46,6 +46,12 @@ public class ReadConfig {
 			VMstopService vmstopservice = new VMstopService();
 			vmstopservice.stopservice(properties.host,properties.vmpassword, properties.service);	
         break; 
+        
+        case whitelistStop:
+        	WhiteListVMs whitelist = new WhiteListVMs();
+			whitelist.whitelistvms(properties.cloudusername, properties.cloudpassword, properties.cloudapiurl,properties.cloudUUID, properties.filepath);
+			log.log( Level.INFO, "Executing Stop FCO VM from whitelist");
+        break;
    
        
         default:
@@ -60,7 +66,8 @@ public class ReadConfig {
 		stressmem,
 		stopVM,
 		blockfirewall,
-		stopservice
+		stopservice,
+		whitelistStop
 	}
 
 }
