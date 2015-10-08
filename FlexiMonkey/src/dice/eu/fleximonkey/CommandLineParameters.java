@@ -23,7 +23,7 @@ public class CommandLineParameters {
 				"Shutdown random VM within FCO.");
 		// Set option r to take maximum of 4 arguments
 		vmShutdown.setArgs(4);
-		vmShutdown.setArgName("cloudusername, cloudpassword, vmpassword, host");
+		vmShutdown.setArgName("cloudusername, cloudpassword,cloudUUID, cloudapiurl");
 		options.addOption(vmShutdown);
 		
 		Option vmStressCPU = new Option("s", "stresscpu", true,
