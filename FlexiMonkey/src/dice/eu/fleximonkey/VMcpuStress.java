@@ -10,11 +10,10 @@ public class VMcpuStress {
 	private static final Logger log = Logger.getLogger( VMcpuStress.class.getName() );
 
 	public void stresscpu(String cores, String time, String vmpassword,
-			String host) {
+			String host, String sshkeypath) {
 		try {
 			String info = null;
 			// Import from config file
-
 			// Add check before attempting SSH. ping?
 			JSch jsch = new JSch();
 
@@ -22,14 +21,13 @@ public class VMcpuStress {
 			host = host.substring(host.indexOf('@') + 1);
 
 			Session session = jsch.getSession(user, host, 22);
-		
-
-			// SSH key config - NOTE Needs tested/way to select between them
-			//Also needed implemeted in comand line option
-			/*
-			 String privateKey = ".ssh/id_rsa"; jsch.addIdentity(privateKey);
-			 * System.out.println("identity added ");
-			 */
+			  if (sshkeypath.equals("-no")) {
+				 session.setPassword(vmpassword);
+			  }
+			  else if (vmpassword.equals("-no"))
+			  {
+					 jsch.addIdentity(sshkeypath);
+			  }
 
 			session.setPassword(vmpassword);
 			java.util.Properties config = new java.util.Properties();

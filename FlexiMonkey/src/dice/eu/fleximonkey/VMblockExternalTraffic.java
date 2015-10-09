@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 public class VMblockExternalTraffic {
 	private static final Logger log = Logger.getLogger( VMblockExternalTraffic.class.getName() );
 
-	public void blockfirewall(String host,String vmpassword) {
+	public void blockfirewall(String host,String vmpassword, String sshkeypath) {
 		try {
 			String info = null;
 			// Import from config file
@@ -21,15 +21,14 @@ public class VMblockExternalTraffic {
 			host = host.substring(host.indexOf('@') + 1);
 
 			Session session = jsch.getSession(user, host, 22);
+			 if (sshkeypath.equals("-no")) {
+				 session.setPassword(vmpassword);
+			  }
+			  else if (vmpassword.equals("-no"))
+			  {
+					 jsch.addIdentity(sshkeypath);
+			  }
 
-			// SSH key config - NOTE Needs tested/way to select between them
-			//Also needed implemeted in comand line option
-			/*
-			 String privateKey = ".ssh/id_rsa"; jsch.addIdentity(privateKey);
-			 * System.out.println("identity added ");
-			 */
-
-			session.setPassword(vmpassword);
 			java.util.Properties config = new java.util.Properties();
 			config.put("StrictHostKeyChecking", "no");
 			session.setConfig(config);

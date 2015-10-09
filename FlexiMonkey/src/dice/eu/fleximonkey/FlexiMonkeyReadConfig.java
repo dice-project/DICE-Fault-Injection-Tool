@@ -20,6 +20,7 @@ public class FlexiMonkeyReadConfig {
 	String memeorytotal = "";
 	String service ="";
 	String filepath="";
+	String sshkeypath="";
 	InputStream inputStream;
 
 	public String getPropValues() throws IOException {
@@ -51,6 +52,7 @@ public class FlexiMonkeyReadConfig {
 			memorytesterloops = prop.getProperty("memorytesterloops");
 			service = prop.getProperty(service);
 			filepath = prop.getProperty(filepath);
+			sshkeypath = prop.getProperty(sshkeypath);
 		} catch (Exception e) {
 			System.out.println("Exception: " + e);
 		} finally {

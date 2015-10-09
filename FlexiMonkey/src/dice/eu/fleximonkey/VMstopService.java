@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 public class VMstopService {
 	private static final Logger log = Logger.getLogger( VMstopService.class.getName() );
 
-	public void stopservice(String host, String vmpassword,String service) {
+	public void stopservice(String host, String vmpassword,String service,String sshkeypath) {
 		try {
 
 			String info = null;
@@ -22,13 +22,13 @@ public class VMstopService {
 			host = host.substring(host.indexOf('@') + 1);
 
 			Session session = jsch.getSession(user, host, 22);
-
-			// SSH key config - NOTE Needs tested/way to select between them
-			/*
-			 * String privateKey = ".ssh/id_rsa"; jsch.addIdentity(privateKey);
-			 * System.out.println("identity added ");
-			 */
-			session.setPassword(vmpassword);
+			 if (sshkeypath.equals("-no")) {
+				 session.setPassword(vmpassword);
+			  }
+			  else if (vmpassword.equals("-no"))
+			  {
+					 jsch.addIdentity(sshkeypath);
+			  }
 			java.util.Properties config = new java.util.Properties();
 			config.put("StrictHostKeyChecking", "no");
 			session.setConfig(config);

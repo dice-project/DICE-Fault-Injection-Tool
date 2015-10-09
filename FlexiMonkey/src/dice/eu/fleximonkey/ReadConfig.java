@@ -22,7 +22,7 @@ public class ReadConfig {
 			//Start Stress execute code
 			log.log( Level.INFO, "Executing CPU stress on VM");
 			VMcpuStress cpustress = new VMcpuStress();
-			cpustress.stresscpu(properties.cores, properties.stresstime, properties.vmpassword, properties.host);
+			cpustress.stresscpu(properties.cores, properties.stresstime, properties.vmpassword, properties.host,properties.sshkeypath);
 		break;	
 		
         case stopVM:
@@ -33,18 +33,18 @@ public class ReadConfig {
         case stressmem:
 			log.log( Level.INFO, "Executing Memory stress on VM");
 			VMmemoryStress vmmemstress = new VMmemoryStress();
-			vmmemstress.stressmemory(properties.host,properties.vmpassword, properties.memorytesterloops, properties.memeorytotal);	
+			vmmemstress.stressmemory(properties.host,properties.vmpassword, properties.memorytesterloops, properties.memeorytotal,properties.sshkeypath);	
         break;
         
         case blockfirewall:
 			log.log( Level.INFO, "Executing blockfirwall on VM");
 			VMblockExternalTraffic blockfirewall = new VMblockExternalTraffic();
-			blockfirewall.blockfirewall(properties.host,properties.vmpassword);	
+			blockfirewall.blockfirewall(properties.host,properties.vmpassword, properties.sshkeypath);	
         break;
         case stopservice:
 			log.log( Level.INFO, "Executing stop service on VM");
 			VMstopService vmstopservice = new VMstopService();
-			vmstopservice.stopservice(properties.host,properties.vmpassword, properties.service);	
+			vmstopservice.stopservice(properties.host,properties.vmpassword, properties.service, properties.sshkeypath);	
         break; 
         
         case whitelistStop:
