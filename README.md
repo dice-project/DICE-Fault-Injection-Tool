@@ -11,7 +11,7 @@ Current User/VM level faults:
 * High Memeory usage for VM (Using Memtest tool)
 * Block VM external access (Using ufw)
 * Stop service running on VM
-* Shutdown random VM from whitelist provided by user(Note the whitelist does not check if VM  exists or is a in a running state)
+* Shutdown random VM from whitelist provided by user (Note the whitelist does not check if VM  exists or is a in a running state)
 
 ### CommandLineParameters:
 usage: CommandLineParameters
