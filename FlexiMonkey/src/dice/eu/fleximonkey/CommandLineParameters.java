@@ -24,32 +24,33 @@ public class CommandLineParameters {
 		// Set option r to take maximum of 4 arguments
 		vmShutdown.setArgs(4);
 		vmShutdown.setArgName("cloudusername, cloudpassword,cloudUUID, cloudapiurl");
+
 		options.addOption(vmShutdown);
 		
 		Option vmStressCPU = new Option("s", "stresscpu", true,
 				"Stress VM CPU");
-		// Set option s to take maximum of 4 arguments
-		vmStressCPU.setArgs(4);
-		vmStressCPU.setArgName("cores, stresstime, vmpassword, host");
+		// Set option s to take maximum of 5 arguments
+		vmStressCPU.setArgs(5);
+		vmStressCPU.setArgName("cores, stresstime, host, vmpassword, sshkeypath");
+		vmStressCPU.setOptionalArg(true);
 		options.addOption(vmStressCPU);
 		
-		Option vmStressMem = new Option("m", "stressmem", true,
-				"Stress VM Memory");
-		// Set option m to take maximum of 4 arguments
-		vmStressMem.setArgs(4);
-		vmStressMem.setArgName("host,vmpassword,memorytesterloops,memeorytotal");
+		Option vmStressMem = new Option("m", "stressmem", true,"Stress VM Memory");
+		// Set option m to take maximum of 5 arguments
+		vmStressMem.setArgs(5);
+		vmStressMem.setArgName("memorytesterloops,memeorytotal,host,vmpassword,sshkeypath");
 		options.addOption(vmStressMem);
 		
 		Option blockfirewallOption = new Option("b", "blockfirewall", true, "Block external communication from Firewall");
-		// Set option 2 to take maximum of 2 arguments
-		blockfirewallOption.setArgs(2);
-		blockfirewallOption.setArgName("host,vmpassword");
+		// Set option 2 to take maximum of 3 arguments
+		blockfirewallOption.setArgs(3);
+		blockfirewallOption.setArgName("host,vmpassword,sshkeypath");
 		options.addOption(blockfirewallOption);
 		
 		Option stopserviceOption = new Option("k", "killservice", true, "Stop service running on VM");
 		// Set maximum of 3 arguments
-		stopserviceOption.setArgs(3);
-		stopserviceOption.setArgName("cloudusername,vmpassword,service");
+		stopserviceOption.setArgs(4);
+		stopserviceOption.setArgName("host,vmpassword,service,sshkeypath");
 		options.addOption(stopserviceOption);
 		
 		Option whitelistVMstopOption = new Option("w", "whiteliststop", true, "Stop VM from whitelist");
@@ -59,7 +60,6 @@ public class CommandLineParameters {
 		options.addOption(whitelistVMstopOption);
 		
 		options.addOption("f", "file", true, "Load from properties file");
-		
 		options.addOption("h", "help", false, "Shows help");
 
 		try {
@@ -91,8 +91,9 @@ public class CommandLineParameters {
 				String[] argument = commandLine.getOptionValues("b");
 				String host = argument[0];
 				String vmpassword = argument[1];
+				String sshkeypath = argument[2];
 				VMblockExternalTraffic blockfirewall = new VMblockExternalTraffic();
-				blockfirewall.blockfirewall(host, vmpassword);
+				blockfirewall.blockfirewall(host, vmpassword,sshkeypath);
 				 log.log( Level.INFO, "Setting firewall");
 
 			}
@@ -100,21 +101,24 @@ public class CommandLineParameters {
 				String[] argument = commandLine.getOptionValues("s");
 				String cores = argument[0];
 				String stresstime = argument[1];
-				String vmpassword = argument[2];
-				String host = argument[3];
+				String host = argument[2];
+				String vmpassword = argument[3];
+				String sshkeypath = argument[4];
 				VMcpuStress cpustress = new VMcpuStress();
-				cpustress.stresscpu(cores,stresstime,vmpassword,host);
+				cpustress.stresscpu(cores,stresstime,vmpassword,host,sshkeypath);
 				log.log( Level.INFO, "Executing CPU stress on VM");
 
-			}
+			}		
+
 			if (commandLine.hasOption("m")) {
 				String[] argument = commandLine.getOptionValues("m");
-				String host = argument[0];
-				String vmpassword = argument[1];
-				String memorytesterloops = argument[2];
-				String memeorytotal = argument[3];
+				String memorytesterloops = argument[0];
+				String memeorytotal = argument[2];
+				String host = argument[3];
+				String vmpassword = argument[4];
+				String sshkeypath = argument[5];
 				VMmemoryStress vmmemstress = new VMmemoryStress();
-				vmmemstress.stressmemory(host,vmpassword,memorytesterloops,memeorytotal);
+				vmmemstress.stressmemory(host,vmpassword,memorytesterloops,memeorytotal,sshkeypath);
 				 log.log( Level.INFO, "Executing Memory stress on VM");
 
 			}
@@ -123,8 +127,10 @@ public class CommandLineParameters {
 				String host = argument[0];
 				String vmpassword = argument[1];
 				String service = argument[2];
+				String sshkeypath = argument[3];
+
 				VMstopService vmstopservice = new VMstopService();
-				vmstopservice.stopservice(host, vmpassword, service);
+				vmstopservice.stopservice(host, vmpassword, service,sshkeypath);
 				log.log( Level.INFO, "Executing Stop service on VM");
 
 			}
