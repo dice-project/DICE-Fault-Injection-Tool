@@ -11,20 +11,22 @@ import org.apache.commons.cli.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@SuppressWarnings("deprecation")
 public class CommandLineParameters {
 	private static final Logger log = Logger.getLogger( CommandLineParameters.class.getName() );
 
 
 	public static void main(String[] args) {
-
+		
+		//new command line parser. Used to generate command line options
 		CommandLineParser parser = new BasicParser();
 		Options options = new Options();
+		
 		Option vmShutdown = new Option("r", "randomVM", true,
 				"Shutdown random VM within FCO.");
 		// Set option r to take maximum of 4 arguments
 		vmShutdown.setArgs(4);
 		vmShutdown.setArgName("cloudusername, cloudpassword,cloudUUID, cloudapiurl");
-
 		options.addOption(vmShutdown);
 		
 		Option vmStressCPU = new Option("s", "stresscpu", true,
@@ -62,32 +64,34 @@ public class CommandLineParameters {
 		options.addOption("f", "file", true, "Load from properties file");
 		options.addOption("h", "help", false, "Shows help");
 
+		//Checks what user has entered as first parameter and checks available options
 		try {
 			CommandLine commandLine = parser.parse(options, args);
 			 log.log( Level.INFO, "Looking for command line option");
 
 			if (commandLine.hasOption("r")) {
-
+				//Executes random Stop VM on FCO platform
 				String[] argument = commandLine.getOptionValues("r");
 				String cloudusername = argument[0];
 				String cloudpassword = argument[1];
 				String cloudUUID = argument[2];
 				String cloudapiurl = argument[3];
-				// Logger to be added
 				FCOListVMs listvms = new FCOListVMs();
 				listvms.listvms(cloudusername, cloudpassword, cloudapiurl,
 						cloudUUID);
-				 log.log( Level.INFO, "Executing stop random VM");
+				 log.log( Level.INFO, "Executing stop random VM on FCO platform");
 
 			}
 
 			if (commandLine.hasOption("f")) {
+				//Reads config file for options
 				ReadConfig readconfigfile = new ReadConfig();
 				readconfigfile.readconfig();
 				 log.log( Level.INFO, "Reading Config File");
 
 			}
 			if (commandLine.hasOption("b")) {
+				//Blocks external connection on VM
 				String[] argument = commandLine.getOptionValues("b");
 				String host = argument[0];
 				String vmpassword = argument[1];
@@ -98,6 +102,7 @@ public class CommandLineParameters {
 
 			}
 			if (commandLine.hasOption("s")) {
+				//Executes high CPU usage on VM
 				String[] argument = commandLine.getOptionValues("s");
 				String cores = argument[0];
 				String stresstime = argument[1];
@@ -111,6 +116,7 @@ public class CommandLineParameters {
 			}		
 
 			if (commandLine.hasOption("m")) {
+				//Causes high Memory usage on VM
 				String[] argument = commandLine.getOptionValues("m");
 				String memorytesterloops = argument[0];
 				String memeorytotal = argument[2];
@@ -123,12 +129,12 @@ public class CommandLineParameters {
 
 			}
 			if (commandLine.hasOption("k")) {
+				//Kills service on VM
 				String[] argument = commandLine.getOptionValues("k");
 				String host = argument[0];
 				String vmpassword = argument[1];
 				String service = argument[2];
 				String sshkeypath = argument[3];
-
 				VMstopService vmstopservice = new VMstopService();
 				vmstopservice.stopservice(host, vmpassword, service,sshkeypath);
 				log.log( Level.INFO, "Executing Stop service on VM");
@@ -136,20 +142,20 @@ public class CommandLineParameters {
 			}
 
 			if (commandLine.hasOption("h")) {
+				//Displays help from command line
 				HelpFormatter formatter = new HelpFormatter();
 				formatter.printHelp("CommandLineParameters", options);
 				 log.log( Level.INFO, "Opening comandline help");
 
 			}
 			if (commandLine.hasOption("w")) {
-
+				//Whitelist VM stop
 				String[] argument = commandLine.getOptionValues("w");
 				String cloudusername = argument[0];
 				String cloudpassword = argument[1];
 				String cloudUUID = argument[2];
 				String cloudapiurl = argument[3];
 				String filepath = argument[4];
-				// Logger to be added
 				WhiteListVMs whitelist = new WhiteListVMs();
 				whitelist.whitelistvms(cloudusername, cloudpassword, cloudapiurl,cloudUUID, filepath);
 				 log.log( Level.INFO, "Executing stop random VM from whitelist");

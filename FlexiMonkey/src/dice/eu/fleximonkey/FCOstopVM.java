@@ -34,8 +34,6 @@ public class FCOstopVM {
 			url = new URL(com.extl.jade.user.UserAPI.class.getResource("."),
 					cloudapiurl);
 		} catch (MalformedURLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
 			 log.log( Level.SEVERE, "Unable to get FCO WSDL");
 		}
 
@@ -96,9 +94,6 @@ public class FCOstopVM {
 
 		} catch (Exception e) {
 			log.log( Level.SEVERE, "Unable to send stop job or server is already stopped");
-
-			// Perhaps update to check state currently?
-			// e.printStackTrace();
 
 		}
 	}

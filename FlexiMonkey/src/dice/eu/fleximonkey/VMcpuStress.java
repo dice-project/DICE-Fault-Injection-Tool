@@ -13,8 +13,7 @@ public class VMcpuStress {
 			String host, String sshkeypath) {
 		try {
 			String info = null;
-			// Import from config file
-			// Add check before attempting SSH. ping?
+
 			JSch jsch = new JSch();
 
 			String user = host.substring(0, host.indexOf('@'));
@@ -36,9 +35,6 @@ public class VMcpuStress {
 			session.connect();
 			log.log( Level.INFO, "Attempting to SSH to VM with ip " + host);
 
-
-			// Look at ways to get number of CPU's to run test.
-			// String command="cat /proc/cpuinfo | grep processor | wc -l";
 			String command = "dpkg-query -W -f='${Status}' stress ";
 
 			Channel channel = session.openChannel("exec");
@@ -85,8 +81,6 @@ public class VMcpuStress {
 				command2 = "sudo apt-get -q -y install stress";
 				log.log( Level.INFO, "Stress tool not found..Installing......");
 			}
-
-			// check not getting called with error
 
 			else if (info.equals("install ok installed")) {
 				command2 = "stress -c " + cores + " -t " + time;

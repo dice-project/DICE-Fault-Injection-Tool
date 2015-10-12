@@ -12,9 +12,7 @@ public class VMblockExternalTraffic {
 	public void blockfirewall(String host,String vmpassword, String sshkeypath) {
 		try {
 			String info = null;
-			// Import from config file
 
-			// Add check before attempting SSH. ping?
 			JSch jsch = new JSch();
 
 			String user = host.substring(0, host.indexOf('@'));

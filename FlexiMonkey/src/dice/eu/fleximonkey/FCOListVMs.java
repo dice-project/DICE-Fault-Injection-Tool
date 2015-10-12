@@ -41,7 +41,6 @@ public class FCOListVMs {
 					cloudapiurl);
 		} catch (MalformedURLException e1) {
 		
-			e1.printStackTrace();
 			 log.log( Level.SEVERE, "Unable to get FCO WSDL");
 		}
 
@@ -110,6 +109,7 @@ public class FCOListVMs {
 				}
 					else
 				{
+				//If key not found then add to list to be considered for shutdown
 	        	list.add(s.getResourceUUID());
 			}
 				log.log( Level.INFO, "Looking for VM to be stopped for customer: " + s.getCustomerUUID());

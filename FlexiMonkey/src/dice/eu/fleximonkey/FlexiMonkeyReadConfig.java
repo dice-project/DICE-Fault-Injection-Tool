@@ -4,8 +4,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class FlexiMonkeyReadConfig {
+	private static final Logger log = Logger.getLogger( FlexiMonkeyReadConfig.class.getName() );
+
+	//Set required inputs by default
 	String result = "";
 	String action = "";
 	String cores = "";
@@ -26,6 +31,8 @@ public class FlexiMonkeyReadConfig {
 	public String getPropValues() throws IOException {
 
 		try {
+			 log.log( Level.INFO, "Loading values from config.properties file");
+
 			Properties prop = new Properties();
 			String propFileName = "config.properties";
 
@@ -35,11 +42,14 @@ public class FlexiMonkeyReadConfig {
 			if (inputStream != null) {
 				prop.load(inputStream);
 			} else {
+				 log.log( Level.SEVERE, "Exception in reading proprties file ");
+
 				throw new FileNotFoundException("property file '"
 						+ propFileName + "' not found in the classpath");
 			}
+			 log.log( Level.INFO, "Getting values from config file");
 
-			// get the property values
+			// get the property values from the config file
 			action = prop.getProperty("action");
 			cores = prop.getProperty("cores");
 			stresstime = prop.getProperty("time");
@@ -54,10 +64,12 @@ public class FlexiMonkeyReadConfig {
 			filepath = prop.getProperty(filepath);
 			sshkeypath = prop.getProperty(sshkeypath);
 		} catch (Exception e) {
-			System.out.println("Exception: " + e);
+			 log.log( Level.SEVERE, "Exception in reading proprties: " + e);
 		} finally {
+			//Close input
 			inputStream.close();
 		}
+		//return the values from the file
 		return result;
 	}
 }
