@@ -8,15 +8,29 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 @SuppressWarnings("deprecation")
 public class CommandLineParameters {
-	private static final Logger log = Logger.getLogger( CommandLineParameters.class.getName() );
-
 
 	public static void main(String[] args) {
+		LoggerWrapper loggerWrapper = null;
+		try {
+			loggerWrapper = LoggerWrapper.getInstance();
+		} catch (SecurityException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		
 		//new command line parser. Used to generate command line options
 		CommandLineParser parser = new BasicParser();
@@ -67,7 +81,7 @@ public class CommandLineParameters {
 		//Checks what user has entered as first parameter and checks available options
 		try {
 			CommandLine commandLine = parser.parse(options, args);
-			 log.log( Level.INFO, "Looking for command line option");
+			 //log.log( Level.INFO, "Looking for command line option");
 
 			if (commandLine.hasOption("r")) {
 				//Executes random Stop VM on FCO platform
@@ -79,7 +93,7 @@ public class CommandLineParameters {
 				FCOListVMs listvms = new FCOListVMs();
 				listvms.listvms(cloudusername, cloudpassword, cloudapiurl,
 						cloudUUID);
-				 log.log( Level.INFO, "Executing stop random VM on FCO platform");
+				LoggerWrapper.myLogger.info( "Executing stop random VM on FCO platform");
 
 			}
 
@@ -87,7 +101,8 @@ public class CommandLineParameters {
 				//Reads config file for options
 				ReadConfig readconfigfile = new ReadConfig();
 				readconfigfile.readconfig();
-				 log.log( Level.INFO, "Reading Config File");
+				LoggerWrapper.myLogger.info( "Reading config file");
+
 
 			}
 			if (commandLine.hasOption("b")) {
@@ -98,7 +113,8 @@ public class CommandLineParameters {
 				String sshkeypath = argument[2];
 				VMblockExternalTraffic blockfirewall = new VMblockExternalTraffic();
 				blockfirewall.blockfirewall(host, vmpassword,sshkeypath);
-				 log.log( Level.INFO, "Setting firewall");
+				LoggerWrapper.myLogger.info( "Setting Firewall on VM");
+
 
 			}
 			if (commandLine.hasOption("s")) {
@@ -111,7 +127,7 @@ public class CommandLineParameters {
 				String sshkeypath = argument[4];
 				VMcpuStress cpustress = new VMcpuStress();
 				cpustress.stresscpu(cores,stresstime,vmpassword,host,sshkeypath);
-				log.log( Level.INFO, "Executing CPU stress on VM");
+				LoggerWrapper.myLogger.info( "Executing CPU stress on VM");
 
 			}		
 
@@ -125,7 +141,7 @@ public class CommandLineParameters {
 				String sshkeypath = argument[5];
 				VMmemoryStress vmmemstress = new VMmemoryStress();
 				vmmemstress.stressmemory(host,vmpassword,memorytesterloops,memeorytotal,sshkeypath);
-				 log.log( Level.INFO, "Executing Memory stress on VM");
+				LoggerWrapper.myLogger.info( "Executing Memory stress on VM");
 
 			}
 			if (commandLine.hasOption("k")) {
@@ -137,7 +153,7 @@ public class CommandLineParameters {
 				String sshkeypath = argument[3];
 				VMstopService vmstopservice = new VMstopService();
 				vmstopservice.stopservice(host, vmpassword, service,sshkeypath);
-				log.log( Level.INFO, "Executing Stop service on VM");
+				LoggerWrapper.myLogger.info( "Executing Stop service on VM" );
 
 			}
 
@@ -145,7 +161,7 @@ public class CommandLineParameters {
 				//Displays help from command line
 				HelpFormatter formatter = new HelpFormatter();
 				formatter.printHelp("CommandLineParameters", options);
-				 log.log( Level.INFO, "Opening comandline help");
+				LoggerWrapper.myLogger.info( "Opening commandline help" );
 
 			}
 			if (commandLine.hasOption("w")) {
@@ -158,13 +174,13 @@ public class CommandLineParameters {
 				String filepath = argument[4];
 				WhiteListVMs whitelist = new WhiteListVMs();
 				whitelist.whitelistvms(cloudusername, cloudpassword, cloudapiurl,cloudUUID, filepath);
-				 log.log( Level.INFO, "Executing stop random VM from whitelist");
+				LoggerWrapper.myLogger.info( "Executing stop random VM from whitelist" );
 
 			}
 
 		} catch (ParseException e) {
-			 log.log( Level.SEVERE, "Unable to find selected option", e.toString());
-			
+			LoggerWrapper.myLogger.severe( "Unable to find selected option " + e.toString());
+
 		}
 
 	}

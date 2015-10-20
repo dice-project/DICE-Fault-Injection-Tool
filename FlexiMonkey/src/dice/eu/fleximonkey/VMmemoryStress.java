@@ -7,9 +7,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class VMmemoryStress {
-	private static final Logger log = Logger.getLogger( VMmemoryStress.class.getName() );
 
 	public void stressmemory(String host, String vmpassword,String memorytesterloops,String memeorytotal,String sshkeypath) {
+		LoggerWrapper loggerWrapper = null;
+		try {
+			loggerWrapper = LoggerWrapper.getInstance();
+		} catch (SecurityException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try {
 
 			String info = null;
@@ -34,7 +43,7 @@ public class VMmemoryStress {
 			config.put("StrictHostKeyChecking", "no");
 			session.setConfig(config);
 			session.connect();
-			log.log( Level.INFO, "Attempting to SSH to VM with ip " + host);
+			LoggerWrapper.myLogger.info("Attempting to SSH to VM with ip " + host);
 
 			// Look at ways to get number of CPU's to run test.
 			// String command="cat /proc/cpuinfo | grep processor | wc -l";
@@ -79,7 +88,7 @@ public class VMmemoryStress {
 			if (info == null) {
 				// command2="sudo stress -m 1 --vm-bytes 512M -t 10s";
 				command2 = "sudo apt-get -q -y install memtester";
-				log.log( Level.INFO, "MemTester tool not found..Installing......");
+				LoggerWrapper.myLogger.info("MemTester tool not found..Installing......");
 
 			}
 
@@ -91,13 +100,13 @@ public class VMmemoryStress {
 				command2 = " sudo memtester "+ memeorytotal +" "+ memorytesterloops;
 
 				//command2 = " sudo memtester 512M " + memorytesterloops;
-				log.log( Level.INFO, "memtester loop number: "
+				LoggerWrapper.myLogger.info("memtester loop number: "
 						+ memorytesterloops);
 
 				
 				// command2="sudo stress -m 1 --vm-bytes 512M -t 2m";
 				// command2="stress -c "+ cores + " -t "+ time;
-				log.log( Level.INFO, "MemTest tool found..running test......");
+				LoggerWrapper.myLogger.info("MemTest tool found..running test......");
 			}
 
 			Channel channel2 = session.openChannel("exec");
@@ -130,7 +139,7 @@ public class VMmemoryStress {
 			channel2.disconnect();
 			session.disconnect();
 		} catch (Exception e) {
-			log.log( Level.SEVERE, "Unable to SSH to VM", e.toString());
+			LoggerWrapper.myLogger.severe("Unable to SSH to VM " + e.toString());
 		}
 	}
 }

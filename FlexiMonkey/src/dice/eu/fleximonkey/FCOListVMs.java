@@ -1,5 +1,6 @@
 package dice.eu.fleximonkey;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -23,11 +24,20 @@ import com.extl.jade.user.UserAPI;
 import com.extl.jade.user.UserService;
 
 public class FCOListVMs {
-	private static final Logger log = Logger.getLogger( FCOListVMs.class.getName() );
 
 	public void listvms(String cloudusername, String cloudpassword,
 			String cloudapiurl, String cloudUUID) {
 		
+		LoggerWrapper loggerWrapper = null;
+		try {
+			loggerWrapper = LoggerWrapper.getInstance();
+		} catch (SecurityException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		//tag used to not shutdown server
 		String resourceKeyName = "noshutdown";
 		
@@ -40,8 +50,7 @@ public class FCOListVMs {
 			url = new URL(com.extl.jade.user.UserAPI.class.getResource("."),
 					cloudapiurl);
 		} catch (MalformedURLException e1) {
-		
-			 log.log( Level.SEVERE, "Unable to get FCO WSDL");
+			LoggerWrapper.myLogger.severe("Unable to get FCO WSDL");
 		}
 
 		// Get the UserAPI
@@ -64,7 +73,7 @@ public class FCOListVMs {
 				cloudpassword);
 
 		try {
-			 log.log( Level.INFO, "Attempting to list servers ");
+			LoggerWrapper.myLogger.info("Attempting to list servers");
 
 			// List all servers in the running and starting states
 
@@ -104,29 +113,28 @@ public class FCOListVMs {
 				 checkedlist = checkkey.getList();
 				if(checkedlist.contains(resourceKeyName))
 				{
-						
-					log.log( Level.INFO, "Key noshutdown found, not adding to list");
+					LoggerWrapper.myLogger.info("Key noshutdown found, not adding to list");
 				}
 					else
 				{
 				//If key not found then add to list to be considered for shutdown
 	        	list.add(s.getResourceUUID());
 			}
-				log.log( Level.INFO, "Looking for VM to be stopped for customer: " + s.getCustomerUUID());
-				log.log( Level.INFO, "Server "+ s.getResourceUUID() + " is in state " + s.getStatus());
+				LoggerWrapper.myLogger.info("Looking for VM to be stopped for customer: " + s.getCustomerUUID());
+				LoggerWrapper.myLogger.info("Server "+ s.getResourceUUID() + " is in state " + s.getStatus());
 
 			}
 			// Error checking if no server is running
 			int index = randomGenerator.nextInt(list.size());
 			String vmuuid = list.get(index);
-			 log.log( Level.INFO, "Server random from list " + vmuuid);
+			LoggerWrapper.myLogger.info("Server random from list " + vmuuid);
 
 			FCOstopVM stopvm = new FCOstopVM();
 			stopvm.stopvm(vmuuid, cloudusername, cloudpassword, cloudapiurl,
 					cloudUUID);
 
 		} catch (Exception e) {
-			 log.log( Level.SEVERE, "Unable to list servers", e.toString());
+			LoggerWrapper.myLogger.severe("Unable to list servers " + e.toString());
 
 		}
 	}

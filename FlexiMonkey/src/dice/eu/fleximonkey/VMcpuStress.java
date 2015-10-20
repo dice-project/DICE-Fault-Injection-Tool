@@ -7,10 +7,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class VMcpuStress {
-	private static final Logger log = Logger.getLogger( VMcpuStress.class.getName() );
 
 	public void stresscpu(String cores, String time, String vmpassword,
 			String host, String sshkeypath) {
+		LoggerWrapper loggerWrapper = null;
+		try {
+			loggerWrapper = LoggerWrapper.getInstance();
+		} catch (SecurityException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try {
 			String info = null;
 
@@ -33,7 +42,7 @@ public class VMcpuStress {
 			config.put("StrictHostKeyChecking", "no");
 			session.setConfig(config);
 			session.connect();
-			log.log( Level.INFO, "Attempting to SSH to VM with ip " + host);
+			LoggerWrapper.myLogger.info("Attempting to SSH to VM with ip " + host);
 
 			String command = "dpkg-query -W -f='${Status}' stress ";
 
@@ -79,12 +88,12 @@ public class VMcpuStress {
 			if (info == null) {
 
 				command2 = "sudo apt-get -q -y install stress";
-				log.log( Level.INFO, "Stress tool not found..Installing......");
+				LoggerWrapper.myLogger.info("Stress tool not found..Installing......");
 			}
 
 			else if (info.equals("install ok installed")) {
 				command2 = "stress -c " + cores + " -t " + time;
-				log.log( Level.INFO, "Stress tool found..running test......");
+				LoggerWrapper.myLogger.info("Stress tool found..running test......");
 			}
 
 			Channel channel2 = session.openChannel("exec");
@@ -117,7 +126,7 @@ public class VMcpuStress {
 			channel2.disconnect();
 			session.disconnect();
 		} catch (Exception e) {
-			log.log( Level.SEVERE, "Unable to SSH to VM", e.toString());
+			LoggerWrapper.myLogger.severe("Unable to SSH to VM " + e.toString());
 		}
 	}
 }

@@ -7,10 +7,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class VMblockExternalTraffic {
-	private static final Logger log = Logger.getLogger( VMblockExternalTraffic.class.getName() );
 
 	public void blockfirewall(String host,String vmpassword, String sshkeypath) {
+		LoggerWrapper loggerWrapper = null;
 		try {
+			loggerWrapper = LoggerWrapper.getInstance();
+		} catch (SecurityException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			
 			String info = null;
 
 			JSch jsch = new JSch();
@@ -31,7 +41,7 @@ public class VMblockExternalTraffic {
 			config.put("StrictHostKeyChecking", "no");
 			session.setConfig(config);
 			session.connect();
-			log.log( Level.INFO, "Attempting to SSH to VM with ip " + host);
+			LoggerWrapper.myLogger.info( "Attempting to SSH to VM with ip " + host);
 
 			String command = "dpkg-query -W -f='${Status}' ufw ";
 
@@ -77,14 +87,14 @@ public class VMblockExternalTraffic {
 			if (info == null) {
 
 				command2 = "sudo apt-get install ufw";
-				log.log( Level.INFO, "ufm not found..Installing......");
+				LoggerWrapper.myLogger.info("ufm not found..Installing......");
 			}
 
 			// check not getting called with error
 
 			else if (info.equals("install ok installed")) {
 				command2 = "echo y | sudo ufw enable";
-				log.log( Level.INFO, "ufw  found..setting firewall and disabling external connections......");
+				LoggerWrapper.myLogger.info( "ufw  found..setting firewall and disabling external connections......");
 			}
 
 			Channel channel2 = session.openChannel("exec");
@@ -117,7 +127,7 @@ public class VMblockExternalTraffic {
 			channel2.disconnect();
 			session.disconnect();
 		} catch (Exception e) {
-			log.log( Level.SEVERE, "Unable to SSH to VM", e.toString());
+			LoggerWrapper.myLogger.severe("Unable to SSH to VM " + e.toString());
 		}
 	}
 }

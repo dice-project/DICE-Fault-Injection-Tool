@@ -7,9 +7,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class VMstopService {
-	private static final Logger log = Logger.getLogger( VMstopService.class.getName() );
 
 	public void stopservice(String host, String vmpassword,String service,String sshkeypath) {
+		LoggerWrapper loggerWrapper = null;
+		try {
+			loggerWrapper = LoggerWrapper.getInstance();
+		} catch (SecurityException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try {
 
 			String info = null;
@@ -33,7 +42,7 @@ public class VMstopService {
 			config.put("StrictHostKeyChecking", "no");
 			session.setConfig(config);
 			session.connect();
-			log.log( Level.INFO, "Attempting to SSH to VM with ip " + host);
+			LoggerWrapper.myLogger.info( "Attempting to SSH to VM with ip " + host);
 			//Executes command on VM
 			String command = "sudo service " + service + " stop";
 			Channel channel = session.openChannel("exec");
@@ -72,7 +81,7 @@ public class VMstopService {
 			channel.disconnect();
 			session.disconnect();
 		} catch (Exception e) {
-			log.log( Level.SEVERE, "Unable to SSH to VM", e.toString());
+			LoggerWrapper.myLogger.severe("Unable to SSH to VM " +  e.toString());
 		}
 	}
 }

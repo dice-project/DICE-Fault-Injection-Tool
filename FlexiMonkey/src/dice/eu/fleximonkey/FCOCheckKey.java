@@ -1,5 +1,6 @@
 package dice.eu.fleximonkey;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -24,11 +25,21 @@ import com.extl.jade.user.UserAPI;
 import com.extl.jade.user.UserService;
 
 public class FCOCheckKey {
-	private static final Logger log = Logger.getLogger(FCOCheckKey.class.getName());
 	public ArrayList<String> listString = new ArrayList<String>();
 
 	public void listvmkeys(String cloudusername, String cloudpassword,
 			String cloudapiurl, String cloudUUID, String serverUUID) {
+
+		LoggerWrapper loggerWrapper = null;
+		try {
+			loggerWrapper = LoggerWrapper.getInstance();
+		} catch (SecurityException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		UserService service;
 
@@ -39,7 +50,7 @@ public class FCOCheckKey {
 					cloudapiurl);
 		} catch (MalformedURLException e1) {
 
-			log.log(Level.SEVERE, "Unable to get FCO WSDL");
+			LoggerWrapper.myLogger.severe("Unable to get FCO WSDL");
 		}
 
 		// Get the UserAPI
@@ -90,19 +101,18 @@ public class FCOCheckKey {
 
 			for (Object o : result.getList()) {
 				Server s = ((Server) o);
-
-				log.log(Level.INFO,
-						"Listing VM keyys for:" + s.getResourceUUID());
+				LoggerWrapper.myLogger.info("Listing VM keyys for:" + s.getResourceUUID());
 
 				List<ResourceKey> resourcekey = s.getResourceKey();
 				for (Object oR : resourcekey) {
 					ResourceKey r = ((ResourceKey) oR);
 					listString.add(r.getName().toString());
 				}
-				log.log(Level.INFO, "Listing VM keyys for:" + listString);
+				LoggerWrapper.myLogger.info( "Listing VM keyys for:" + listString);
 			}
 		} catch (Exception e) {
-			log.log(Level.SEVERE, "Unable to list keys error: " + e.toString());
+			LoggerWrapper.myLogger.severe("Unable to list keys error: " + e.toString());
+
 		}
 
 	}

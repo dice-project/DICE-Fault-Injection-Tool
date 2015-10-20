@@ -8,8 +8,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class FlexiMonkeyReadConfig {
-	private static final Logger log = Logger.getLogger( FlexiMonkeyReadConfig.class.getName() );
-
 	//Set required inputs by default
 	String result = "";
 	String action = "";
@@ -29,9 +27,18 @@ public class FlexiMonkeyReadConfig {
 	InputStream inputStream;
 
 	public String getPropValues() throws IOException {
-
+		LoggerWrapper loggerWrapper = null;
 		try {
-			 log.log( Level.INFO, "Loading values from config.properties file");
+			loggerWrapper = LoggerWrapper.getInstance();
+		} catch (SecurityException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			LoggerWrapper.myLogger.info("Loading values from config.properties file");
 
 			Properties prop = new Properties();
 			String propFileName = "config.properties";
@@ -42,12 +49,12 @@ public class FlexiMonkeyReadConfig {
 			if (inputStream != null) {
 				prop.load(inputStream);
 			} else {
-				 log.log( Level.SEVERE, "Exception in reading proprties file ");
+				LoggerWrapper.myLogger.severe("Exception in reading proprties file ");
 
 				throw new FileNotFoundException("property file '"
 						+ propFileName + "' not found in the classpath");
 			}
-			 log.log( Level.INFO, "Getting values from config file");
+			LoggerWrapper.myLogger.info("Getting values from config file");
 
 			// get the property values from the config file
 			action = prop.getProperty("action");
@@ -64,7 +71,7 @@ public class FlexiMonkeyReadConfig {
 			filepath = prop.getProperty(filepath);
 			sshkeypath = prop.getProperty(sshkeypath);
 		} catch (Exception e) {
-			 log.log( Level.SEVERE, "Exception in reading proprties: " + e);
+			LoggerWrapper.myLogger.severe("Exception in reading proprties: " + e);
 		} finally {
 			//Close input
 			inputStream.close();
