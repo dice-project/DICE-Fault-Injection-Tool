@@ -10,6 +10,8 @@ public class VMcpuStress {
 
 	public void stresscpu(String cores, String time, String vmpassword,
 			String host, String sshkeypath) {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(baos));
 		LoggerWrapper loggerWrapper = null;
 		try {
 			loggerWrapper = LoggerWrapper.getInstance();
@@ -20,6 +22,8 @@ public class VMcpuStress {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+
+
 		try {
 			String info = null;
 
@@ -125,6 +129,8 @@ public class VMcpuStress {
 			in1.close();
 			channel2.disconnect();
 			session.disconnect();
+			LoggerWrapper.myLogger.info( baos.toString());
+
 		} catch (Exception e) {
 			LoggerWrapper.myLogger.severe("Unable to SSH to VM " + e.toString());
 		}

@@ -9,6 +9,8 @@ import java.util.logging.Logger;
 public class VMblockExternalTraffic {
 
 	public void blockfirewall(String host,String vmpassword, String sshkeypath) {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(baos));
 		LoggerWrapper loggerWrapper = null;
 		try {
 			loggerWrapper = LoggerWrapper.getInstance();
@@ -126,6 +128,8 @@ public class VMblockExternalTraffic {
 			in1.close();
 			channel2.disconnect();
 			session.disconnect();
+			LoggerWrapper.myLogger.info( baos.toString());
+
 		} catch (Exception e) {
 			LoggerWrapper.myLogger.severe("Unable to SSH to VM " + e.toString());
 		}

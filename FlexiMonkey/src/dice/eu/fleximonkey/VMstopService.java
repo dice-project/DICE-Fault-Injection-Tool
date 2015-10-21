@@ -9,6 +9,8 @@ import java.util.logging.Logger;
 public class VMstopService {
 
 	public void stopservice(String host, String vmpassword,String service,String sshkeypath) {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(baos));
 		LoggerWrapper loggerWrapper = null;
 		try {
 			loggerWrapper = LoggerWrapper.getInstance();
@@ -80,6 +82,8 @@ public class VMstopService {
 			//Disconnects all session to VM
 			channel.disconnect();
 			session.disconnect();
+			LoggerWrapper.myLogger.info( baos.toString());
+
 		} catch (Exception e) {
 			LoggerWrapper.myLogger.severe("Unable to SSH to VM " +  e.toString());
 		}
