@@ -3,8 +3,6 @@ package dice.eu.fleximonkey;
 import com.jcraft.jsch.*;
 
 import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class VMmemoryStress {
 
@@ -49,7 +47,7 @@ public class VMmemoryStress {
 
 			// Look at ways to get number of CPU's to run test.
 			// String command="cat /proc/cpuinfo | grep processor | wc -l";
-			String command = "dpkg-query -W -f='${Status}' stress ";
+			String command = "dpkg-query -W -f='${Status}' memtester ";
 
 			Channel channel = session.openChannel("exec");
 			((ChannelExec) channel).setCommand(command);
