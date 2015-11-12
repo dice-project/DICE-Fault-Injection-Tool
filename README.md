@@ -10,6 +10,7 @@ Current User/VM level faults:
 * High CPU for VM (Using Stress tool)
 * High Memeory usage for VM (Using Memtest tool)
 * Block VM external access (Using ufw)
+* High Bandwith usage. (Using iperf, requires extrnal iperf server ip to be passed)
 * Stop service running on VM
 * Shutdown random VM from whitelist provided by user (Note the whitelist does not check if VM  exists or is a in a running state)
 
