@@ -20,7 +20,8 @@ usage: CommandLineParameters
     > -h,--help Shows help.
     > -m,--stressmem <memorytesterloops,memeorytotal,host,vmpassword,sshkeypath> Stress VM Memory.
     > -r,--randomVM <cloudusername, cloudpassword, cloudUUID,cloudapiurl> Shutdown random VM within FCO.
-    > -s,--stresscpu <cores, stresstime, host, vmpassword, sshkeypath> Stress VM CPU.
+    > -s,--stresscpu <cores,time, host, vmpassword, sshkeypath> Stress VM CPU.
     > -b,--blockfirewall <host,vmpassword,sshkeypath> Block external communication from Firewall.
     > -k,--killservice <host,vmpassword,service,sshkeypath> Stop service running on VM.
     > -w,--whitelist <cloudusername, cloudpassword, vmpassword, filepath> Shutdown random VM within FCO from testfile list
+    > -n,--stressnetwork <host, vmpassword, iperfserver, time, sshkeypath> High badnwith usage of VM 
