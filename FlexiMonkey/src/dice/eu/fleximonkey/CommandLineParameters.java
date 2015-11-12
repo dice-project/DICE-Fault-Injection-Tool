@@ -75,6 +75,12 @@ public class CommandLineParameters {
 		whitelistVMstopOption.setArgName("cloudusername, cloudpassword, cloudUUID, cloudapiurl, filepath");
 		options.addOption(whitelistVMstopOption);
 		
+		Option networkstress = new Option("n", "stressnetwork", true, "Stress network on VM");
+		// Set maximum of 5 arguments
+		networkstress.setArgs(5);
+		networkstress.setArgName("host,vmpassword,iperfserver,time,sshkeypath");
+		options.addOption(networkstress);
+		
 		options.addOption("f", "file", true, "Load from properties file");
 		options.addOption("h", "help", false, "Shows help");
 
@@ -175,6 +181,21 @@ public class CommandLineParameters {
 				WhiteListVMs whitelist = new WhiteListVMs();
 				whitelist.whitelistvms(cloudusername, cloudpassword, cloudapiurl,cloudUUID, filepath);
 				LoggerWrapper.myLogger.info( "Executing stop random VM from whitelist" );
+
+			}
+			networkstress.setArgName("host,vmpassword,iperfserver,time,sshkeypath");
+
+			if (commandLine.hasOption("n")) {
+				//Causes high bandwith useage on VM
+				String[] argument = commandLine.getOptionValues("n");
+				String host = argument[0];
+				String vmpassword = argument[1];
+				String iperfserver = argument[2];
+				String time = argument[3];
+				String sshkeypath = argument[4];
+				NetworkBandwidthStress networkstresstest = new NetworkBandwidthStress();
+				networkstresstest.networkbandwidthstress(host, vmpassword, iperfserver, time, sshkeypath);
+				LoggerWrapper.myLogger.info( "Executing High bandwith usage on VM" );
 
 			}
 

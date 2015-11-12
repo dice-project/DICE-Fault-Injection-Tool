@@ -12,7 +12,7 @@ public class FlexiMonkeyReadConfig {
 	String result = "";
 	String action = "";
 	String cores = "";
-	String stresstime = "";
+	String time = "";
 	String vmpassword = "";
 	String host = "";
 	String cloudapiurl = "";
@@ -24,6 +24,7 @@ public class FlexiMonkeyReadConfig {
 	String service ="";
 	String filepath="";
 	String sshkeypath="";
+	String iperfserver ="";
 	InputStream inputStream;
 
 	public String getPropValues() throws IOException {
@@ -59,7 +60,7 @@ public class FlexiMonkeyReadConfig {
 			// get the property values from the config file
 			action = prop.getProperty("action");
 			cores = prop.getProperty("cores");
-			stresstime = prop.getProperty("time");
+			time = prop.getProperty("time");
 			vmpassword = prop.getProperty("password");
 			host = prop.getProperty("host");
 			cloudapiurl = prop.getProperty("cloudapiurl");

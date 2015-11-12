@@ -31,7 +31,7 @@ public class ReadConfig {
 			//Start Stress execute code
 			LoggerWrapper.myLogger.info("Executing CPU stress on VM");
 			VMcpuStress cpustress = new VMcpuStress();
-			cpustress.stresscpu(properties.cores, properties.stresstime, properties.vmpassword, properties.host,properties.sshkeypath);
+			cpustress.stresscpu(properties.cores, properties.time, properties.vmpassword, properties.host,properties.sshkeypath);
 		break;	
 		
         case stopVM:
@@ -61,7 +61,12 @@ public class ReadConfig {
 			whitelist.whitelistvms(properties.cloudusername, properties.cloudpassword, properties.cloudapiurl,properties.cloudUUID, properties.filepath);
 			LoggerWrapper.myLogger.info("Executing Stop FCO VM from whitelist");
         break;
-   
+        
+        case stressnetwork:
+        	NetworkBandwidthStress networkstresstest = new NetworkBandwidthStress();
+			networkstresstest.networkbandwidthstress(properties.host, properties.vmpassword, properties.iperfserver, properties.time, properties.sshkeypath);
+			LoggerWrapper.myLogger.info("Executing Stop FCO VM from whitelist");
+        break;
        
         default:
 			LoggerWrapper.myLogger.severe("Error no option selected!!");
@@ -76,7 +81,8 @@ public class ReadConfig {
 		stopVM,
 		blockfirewall,
 		stopservice,
-		whitelistStop
+		whitelistStop,
+		stressnetwork
 	}
 
 }
