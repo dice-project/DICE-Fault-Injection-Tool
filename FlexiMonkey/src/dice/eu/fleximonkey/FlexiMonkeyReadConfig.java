@@ -25,6 +25,7 @@ public class FlexiMonkeyReadConfig {
 	String filepath="";
 	String sshkeypath="";
 	String iperfserver ="";
+	String loops ="";
 	InputStream inputStream;
 
 	public String getPropValues() throws IOException {
@@ -68,9 +69,10 @@ public class FlexiMonkeyReadConfig {
 			cloudpassword = prop.getProperty("cloudpassword");
 			cloudUUID = prop.getProperty("cloudUUID");
 			memorytesterloops = prop.getProperty("memorytesterloops");
-			service = prop.getProperty(service);
-			filepath = prop.getProperty(filepath);
-			sshkeypath = prop.getProperty(sshkeypath);
+			service = prop.getProperty("service");
+			filepath = prop.getProperty("filepath");
+			sshkeypath = prop.getProperty("sshkeypath");
+			loops = prop.getProperty("loops");
 		} catch (Exception e) {
 			LoggerWrapper.myLogger.severe("Exception in reading proprties: " + e);
 		} finally {

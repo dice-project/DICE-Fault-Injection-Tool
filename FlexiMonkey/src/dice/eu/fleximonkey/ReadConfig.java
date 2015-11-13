@@ -67,6 +67,12 @@ public class ReadConfig {
 			networkstresstest.networkbandwidthstress(properties.host, properties.vmpassword, properties.iperfserver, properties.time, properties.sshkeypath);
 			LoggerWrapper.myLogger.info("Executing Stop FCO VM from whitelist");
         break;
+        
+        case stressdisk:
+        	VMDiskStress diskstresstest = new VMDiskStress();
+        	diskstresstest.stressdisk(properties.host, properties.vmpassword, properties.memeorytotal, properties.loops, properties.sshkeypath);
+			LoggerWrapper.myLogger.info("Executing Stop FCO VM from whitelist");
+        break;
        
         default:
 			LoggerWrapper.myLogger.severe("Error no option selected!!");
@@ -82,7 +88,8 @@ public class ReadConfig {
 		blockfirewall,
 		stopservice,
 		whitelistStop,
-		stressnetwork
+		stressnetwork,
+		stressdisk
 	}
 
 }

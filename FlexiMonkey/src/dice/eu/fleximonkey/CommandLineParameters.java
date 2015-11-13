@@ -81,6 +81,12 @@ public class CommandLineParameters {
 		networkstress.setArgName("host,vmpassword,iperfserver,time,sshkeypath");
 		options.addOption(networkstress);
 		
+		Option diskstress = new Option("d", "diskstress", true, "Stress Disk on VM");
+		// Set maximum of 5 arguments
+		diskstress.setArgs(5);
+		diskstress.setArgName("host,vmpassword,memeorytotal,loops,sshkeypath");
+		options.addOption(diskstress);
+		
 		options.addOption("f", "file", true, "Load from properties file");
 		options.addOption("h", "help", false, "Shows help");
 
@@ -183,7 +189,6 @@ public class CommandLineParameters {
 				LoggerWrapper.myLogger.info( "Executing stop random VM from whitelist" );
 
 			}
-			networkstress.setArgName("host,vmpassword,iperfserver,time,sshkeypath");
 
 			if (commandLine.hasOption("n")) {
 				//Causes high bandwith useage on VM
@@ -195,6 +200,20 @@ public class CommandLineParameters {
 				String sshkeypath = argument[4];
 				NetworkBandwidthStress networkstresstest = new NetworkBandwidthStress();
 				networkstresstest.networkbandwidthstress(host, vmpassword, iperfserver, time, sshkeypath);
+				LoggerWrapper.myLogger.info( "Executing High bandwith usage on VM" );
+
+			}
+			
+			if (commandLine.hasOption("d")) {
+				//Causes high disk useage on VM
+				String[] argument = commandLine.getOptionValues("d");
+				String host = argument[0];
+				String vmpassword = argument[1];
+				String memeorytotal = argument[2];
+				String loops = argument[3];
+				String sshkeypath = argument[4];
+				VMDiskStress diskstresstest = new VMDiskStress();
+				diskstresstest.stressdisk(host, vmpassword, memeorytotal, loops, sshkeypath);
 				LoggerWrapper.myLogger.info( "Executing High bandwith usage on VM" );
 
 			}
