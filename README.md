@@ -10,6 +10,8 @@ Current User/VM level faults:
 * High CPU for VM (Using Stress tool)
 * High Memeory usage for VM (Using Memtest tool)
 * Block VM external access (Using ufw)
+* High Bandwith usage. (Using iperf, requires extrnal iperf server ip to be passed)
+* High Disk I/O usage (Using Bonnie ++)
 * Stop service running on VM
 * Shutdown random VM from whitelist provided by user (Note the whitelist does not check if VM  exists or is a in a running state)
 
@@ -20,7 +22,10 @@ usage: CommandLineParameters
     > -h,--help Shows help.
     > -m,--stressmem <memorytesterloops,memeorytotal,host,vmpassword,sshkeypath> Stress VM Memory.
     > -r,--randomVM <cloudusername, cloudpassword, cloudUUID,cloudapiurl> Shutdown random VM within FCO.
-    > -s,--stresscpu <cores, stresstime, host, vmpassword, sshkeypath> Stress VM CPU.
+    > -s,--stresscpu <cores,time, host, vmpassword, sshkeypath> Stress VM CPU.
     > -b,--blockfirewall <host,vmpassword,sshkeypath> Block external communication from Firewall.
     > -k,--killservice <host,vmpassword,service,sshkeypath> Stop service running on VM.
     > -w,--whitelist <cloudusername, cloudpassword, vmpassword, filepath> Shutdown random VM within FCO from testfile list
+    > -n,--stressnetwork <host, vmpassword, iperfserver, time, sshkeypath> High bandwitdh usage of VM 
+    > -d,--diskstress <host, vmpassword, n,memeorytotal, loops, sshkeypath> High Disk usage of VM 
+
