@@ -5,8 +5,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -24,6 +22,7 @@ public class FCOstopVM {
 	@SuppressWarnings("deprecation")
 	public void stopvm(String vmuuid, String cloudusername,
 			String cloudpassword, String cloudapiurl, String cloudUUID) {
+		@SuppressWarnings("unused")
 		LoggerWrapper loggerWrapper = null;
 		try {
 			loggerWrapper = LoggerWrapper.getInstance();
@@ -78,7 +77,6 @@ public class FCOstopVM {
 			datatypeFactory = DatatypeFactory.newInstance();
 
 			now = datatypeFactory.newXMLGregorianCalendar(gregorianCalendar);
-			@SuppressWarnings("deprecation")
 			int mins = date.getMinutes();
 			int sec = date.getSeconds();
 			int hours = date.getHours();

@@ -3,14 +3,13 @@ package dice.eu.fleximonkey;
 import com.jcraft.jsch.*;
 
 import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class VMstopService {
 
 	public void stopservice(String host, String vmpassword,String service,String sshkeypath) {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(baos));
+		@SuppressWarnings("unused")
 		LoggerWrapper loggerWrapper = null;
 		try {
 			loggerWrapper = LoggerWrapper.getInstance();
@@ -23,6 +22,7 @@ public class VMstopService {
 		}
 		try {
 
+			@SuppressWarnings("unused")
 			String info = null;
 			JSch jsch = new JSch();
 			

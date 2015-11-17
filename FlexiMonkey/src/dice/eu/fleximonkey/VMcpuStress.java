@@ -3,8 +3,6 @@ package dice.eu.fleximonkey;
 import com.jcraft.jsch.*;
 
 import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class VMcpuStress {
 
@@ -12,6 +10,7 @@ public class VMcpuStress {
 			String host, String sshkeypath) {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(baos));
+		@SuppressWarnings("unused")
 		LoggerWrapper loggerWrapper = null;
 		try {
 			loggerWrapper = LoggerWrapper.getInstance();

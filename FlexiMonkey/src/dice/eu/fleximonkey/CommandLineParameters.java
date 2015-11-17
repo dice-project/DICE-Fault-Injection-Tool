@@ -7,19 +7,13 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 @SuppressWarnings("deprecation")
 public class CommandLineParameters {
 
 	public static void main(String[] args) {
+		@SuppressWarnings("unused")
 		LoggerWrapper loggerWrapper = null;
 		try {
 			loggerWrapper = LoggerWrapper.getInstance();

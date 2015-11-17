@@ -11,6 +11,7 @@ public class WhiteListVMs {
 	public void whitelistvms(String cloudusername, String cloudpassword,
 			String cloudapiurl, String cloudUUID, String filepath) {
 		
+		@SuppressWarnings("unused")
 		LoggerWrapper loggerWrapper = null;
 		try {
 			loggerWrapper = LoggerWrapper.getInstance();

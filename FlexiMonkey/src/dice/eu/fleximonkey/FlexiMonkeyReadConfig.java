@@ -4,8 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class FlexiMonkeyReadConfig {
 	//Set required inputs by default
@@ -29,6 +27,7 @@ public class FlexiMonkeyReadConfig {
 	InputStream inputStream;
 
 	public String getPropValues() throws IOException {
+		@SuppressWarnings("unused")
 		LoggerWrapper loggerWrapper = null;
 		try {
 			loggerWrapper = LoggerWrapper.getInstance();

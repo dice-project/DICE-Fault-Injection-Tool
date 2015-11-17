@@ -5,9 +5,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.xml.namespace.QName;
 import javax.xml.ws.BindingProvider;
@@ -20,7 +17,6 @@ import com.extl.jade.user.ResourceKey;
 import com.extl.jade.user.ResourceType;
 import com.extl.jade.user.SearchFilter;
 import com.extl.jade.user.Server;
-import com.extl.jade.user.ServerStatus;
 import com.extl.jade.user.UserAPI;
 import com.extl.jade.user.UserService;
 
@@ -30,6 +26,7 @@ public class FCOCheckKey {
 	public void listvmkeys(String cloudusername, String cloudpassword,
 			String cloudapiurl, String cloudUUID, String serverUUID) {
 
+		@SuppressWarnings("unused")
 		LoggerWrapper loggerWrapper = null;
 		try {
 			loggerWrapper = LoggerWrapper.getInstance();

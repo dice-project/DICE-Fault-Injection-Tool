@@ -10,6 +10,7 @@ public class NetworkBandwidthStress {
 	public void networkbandwidthstress(String host, String vmpassword,String iperfserver,String time,String sshkeypath) {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(baos));
+		@SuppressWarnings("unused")
 		LoggerWrapper loggerWrapper = null;
 		try {
 			loggerWrapper = LoggerWrapper.getInstance();

@@ -1,11 +1,10 @@
 package dice.eu.fleximonkey;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ReadConfig {
 
 	public void readconfig(){
+		@SuppressWarnings("unused")
 		LoggerWrapper loggerWrapper = null;
 		try {
 			loggerWrapper = LoggerWrapper.getInstance();

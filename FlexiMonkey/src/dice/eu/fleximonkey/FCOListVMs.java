@@ -6,8 +6,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.xml.namespace.QName;
 import javax.xml.ws.BindingProvider;
@@ -28,6 +26,7 @@ public class FCOListVMs {
 	public void listvms(String cloudusername, String cloudpassword,
 			String cloudapiurl, String cloudUUID) {
 		
+		@SuppressWarnings("unused")
 		LoggerWrapper loggerWrapper = null;
 		try {
 			loggerWrapper = LoggerWrapper.getInstance();

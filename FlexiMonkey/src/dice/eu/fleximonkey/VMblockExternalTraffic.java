@@ -3,14 +3,13 @@ package dice.eu.fleximonkey;
 import com.jcraft.jsch.*;
 
 import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class VMblockExternalTraffic {
 
 	public void blockfirewall(String host,String vmpassword, String sshkeypath) {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(baos));
+		@SuppressWarnings("unused")
 		LoggerWrapper loggerWrapper = null;
 		try {
 			loggerWrapper = LoggerWrapper.getInstance();
