@@ -8,7 +8,7 @@ Example command: --stressmem 2 512m ubuntu@111.222.333.444 -no c://SSHKEYS/VMkey
 Current User/VM level faults:
 * Shutdown random VM (Ignore tagged VM with "noshutdown" in random selection)
 * High CPU for VM (Using Stress tool)
-* High Memeory usage for VM (Using Memtest tool)
+* High Memory usage for VM (Using Memtest tool)
 * Block VM external access (Using ufw)
 * High Bandwith usage. (Using iperf, requires extrnal iperf server ip to be passed)
 * High Disk I/O usage (Using Bonnie ++)
