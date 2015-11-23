@@ -47,7 +47,7 @@ public class VMDiskStress {
 			session.connect();
 			LoggerWrapper.myLogger.info("Attempting to SSH to VM with ip " + host);
 
-			String command = "dpkg-query -W -f='${Status}' stress ";
+			String command = "dpkg-query -W -f='${Status}' bonnie++ ";
 
 			Channel channel = session.openChannel("exec");
 			((ChannelExec) channel).setCommand(command);
