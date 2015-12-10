@@ -141,10 +141,10 @@ public class CommandLineParameters {
 				//Causes high Memory usage on VM
 				String[] argument = commandLine.getOptionValues("m");
 				String memorytesterloops = argument[0];
-				String memeorytotal = argument[2];
-				String host = argument[3];
-				String vmpassword = argument[4];
-				String sshkeypath = argument[5];
+				String memeorytotal = argument[1];
+				String host = argument[2];
+				String vmpassword = argument[3];
+				String sshkeypath = argument[4];
 				VMmemoryStress vmmemstress = new VMmemoryStress();
 				vmmemstress.stressmemory(host,vmpassword,memorytesterloops,memeorytotal,sshkeypath);
 				LoggerWrapper.myLogger.info( "Executing Memory stress on VM");
