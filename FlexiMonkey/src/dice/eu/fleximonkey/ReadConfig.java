@@ -3,7 +3,7 @@ import java.io.IOException;
 
 public class ReadConfig {
 
-	public void readconfig(){
+	public void readconfig(String filepath){
 		@SuppressWarnings("unused")
 		LoggerWrapper loggerWrapper = null;
 		try {
@@ -17,7 +17,7 @@ public class ReadConfig {
 		}
 		FlexiMonkeyReadConfig properties = new FlexiMonkeyReadConfig();
 		try {
-			properties.getPropValues();
+			properties.getPropValues(filepath);
 		} catch (IOException e) {
 			LoggerWrapper.myLogger.severe("Error getting file values " + e.toString());
 		}

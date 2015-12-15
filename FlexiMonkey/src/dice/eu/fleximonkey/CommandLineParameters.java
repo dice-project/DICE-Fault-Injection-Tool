@@ -7,6 +7,7 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+
 import java.io.IOException;
 
 @SuppressWarnings("deprecation")
@@ -81,13 +82,20 @@ public class CommandLineParameters {
 		diskstress.setArgName("host,vmpassword,memeorytotal,loops,sshkeypath");
 		options.addOption(diskstress);
 		
-		options.addOption("f", "file", true, "Load from properties file");
+		//test loading
+		//options.addOption("f", "file", true, "Load from properties file");
+		Option loadfile = new Option("f", "file", true, "Load from properties file");
+		// Set maximum of 1 arguments
+		loadfile.setArgs(1);
+		loadfile.setArgName("filepath");
+		options.addOption(loadfile);
+		
 		options.addOption("h", "help", false, "Shows help");
 
 		//Checks what user has entered as first parameter and checks available options
 		try {
 			CommandLine commandLine = parser.parse(options, args);
-			 //log.log( Level.INFO, "Looking for command line option");
+			LoggerWrapper.myLogger.info("Looking for command line option");
 
 			if (commandLine.hasOption("r")) {
 				//Executes random Stop VM on FCO platform
@@ -104,9 +112,11 @@ public class CommandLineParameters {
 			}
 
 			if (commandLine.hasOption("f")) {
+				String[] argument = commandLine.getOptionValues("f");
+				String filepath = argument[0];
 				//Reads config file for options
 				ReadConfig readconfigfile = new ReadConfig();
-				readconfigfile.readconfig();
+				readconfigfile.readconfig(filepath);
 				LoggerWrapper.myLogger.info( "Reading config file");
 
 
