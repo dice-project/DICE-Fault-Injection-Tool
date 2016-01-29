@@ -82,6 +82,11 @@ public class CommandLineParameters {
 		diskstress.setArgName("host,vmpassword,memeorytotal,loops,sshkeypath");
 		options.addOption(diskstress);
 		
+		Option ycsb = new Option("y", "ycsb", true, "Call ycsb to stress mongodb");
+		// Set maximum of 5 arguments
+		ycsb.setArgs(5);
+		ycsb.setArgName("host,vmpassword,workloadname,threads,sshkeypath");
+		options.addOption(ycsb);
 		//test loading
 		//options.addOption("f", "file", true, "Load from properties file");
 		Option loadfile = new Option("f", "file", true, "Load from properties file");
@@ -219,6 +224,21 @@ public class CommandLineParameters {
 				VMDiskStress diskstresstest = new VMDiskStress();
 				diskstresstest.stressdisk(host, vmpassword, memeorytotal, loops, sshkeypath);
 				LoggerWrapper.myLogger.info( "Executing High bandwith usage on VM" );
+
+			}
+			
+			if (commandLine.hasOption("y")) {
+				//Uses YCSB on VM
+
+				String[] argument = commandLine.getOptionValues("y");
+				String host = argument[0];
+				String vmpassword = argument[1];
+				String workloadname = argument[2];
+				String threads = argument[3];
+				String sshkeypath = argument[4];
+				VMYCSB vmycsb = new VMYCSB();
+				vmycsb.vmycsbclass(host, vmpassword, workloadname, threads, sshkeypath);
+				LoggerWrapper.myLogger.info( "Executing YCSB on VM" );
 
 			}
 
