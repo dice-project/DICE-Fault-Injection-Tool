@@ -14,6 +14,7 @@ Current User/VM level faults:
 * High Disk I/O usage (Using Bonnie ++)
 * Stop service running on VM
 * Shutdown random VM from whitelist provided by user (Note the whitelist does not check if VM  exists or is a in a running state)
+* Call YCSB on VM running MongoDB to begin workload test.
 
 ### CommandLineParameters:
 usage: CommandLineParameters
@@ -28,4 +29,6 @@ usage: CommandLineParameters
     > -w,--whitelist <cloudusername, cloudpassword, vmpassword, filepath> Shutdown random VM within FCO from testfile list
     > -n,--stressnetwork <host, vmpassword, iperfserver, time, sshkeypath> High bandwitdh usage of VM 
     > -d,--diskstress <host, vmpassword, n,memeorytotal, loops, sshkeypath> High Disk usage of VM 
+    > -y,--ycsb <host, vmpassword, workloadname, threads, sshkeypath> Start ycsb workload on MongoDB db
+
 
