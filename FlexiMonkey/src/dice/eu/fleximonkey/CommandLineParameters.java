@@ -87,8 +87,13 @@ public class CommandLineParameters {
 		ycsb.setArgs(5);
 		ycsb.setArgName("host,vmpassword,workloadname,threads,sshkeypath");
 		options.addOption(ycsb);
-		//test loading
-		//options.addOption("f", "file", true, "Load from properties file");
+
+		Option jmeter = new Option("j", "jmeter", true, "Call jmeter to run created plan");
+		// Set maximum of 4 arguments
+		ycsb.setArgs(4);
+		ycsb.setArgName("host,vmpassword,planname,sshkeypath");
+		options.addOption(jmeter);	
+		
 		Option loadfile = new Option("f", "file", true, "Load from properties file");
 		// Set maximum of 1 arguments
 		loadfile.setArgs(1);
@@ -239,6 +244,20 @@ public class CommandLineParameters {
 				VMYCSB vmycsb = new VMYCSB();
 				vmycsb.vmycsbclass(host, vmpassword, workloadname, threads, sshkeypath);
 				LoggerWrapper.myLogger.info( "Executing YCSB on VM" );
+
+			}
+			
+			if (commandLine.hasOption("j")) {
+				//Uses JMeter on VM
+
+				String[] argument = commandLine.getOptionValues("j");
+				String host = argument[0];
+				String vmpassword = argument[1];
+				String planname = argument[2];
+				String sshkeypath = argument[3];
+				RunJmeter vmjmeter = new RunJmeter();
+				vmjmeter.jmeter(host, vmpassword, planname, sshkeypath);
+				LoggerWrapper.myLogger.info( "Executing Jmeter on VM" );
 
 			}
 
