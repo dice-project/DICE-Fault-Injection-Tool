@@ -3,11 +3,32 @@ package dice.eu.fleximonkey;
 import com.jcraft.jsch.*;
 
 import java.io.*;
+import java.util.concurrent.TimeUnit;
 
 public class VMcpuStress {
 
 	public void stresscpu(String cores, String time, String vmpassword,
 			String host, String sshkeypath) {
+		
+		OSChecker oscheck = new OSChecker();
+		oscheck.oscheck(host, vmpassword, sshkeypath);
+		String localOS = oscheck.OSVERSION;
+		LoggerWrapper.myLogger.info("Got here");
+		LoggerWrapper.myLogger.info(localOS);
+
+		//String localOS = "CENTOS";
+		String command;
+		
+		if (localOS.equals("UBUNTU"))
+		{
+		command ="dpkg-query -W -f='${Status}' stress";
+
+		}
+		else
+		{
+			//CENTOS will not accept first command so "dud" command sent
+		command ="";
+		}
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(baos));
 		@SuppressWarnings("unused")
@@ -22,8 +43,9 @@ public class VMcpuStress {
 			e1.printStackTrace();
 		}
 
-
+		
 		try {
+			
 			String info = null;
 
 			JSch jsch = new JSch();
@@ -41,17 +63,19 @@ public class VMcpuStress {
 			  }
 
 			session.setPassword(vmpassword);
+		
+		
+		
 			java.util.Properties config = new java.util.Properties();
 			config.put("StrictHostKeyChecking", "no");
 			session.setConfig(config);
+		
 			session.connect();
 			LoggerWrapper.myLogger.info("Attempting to SSH to VM with ip " + host);
-
-			String command = "dpkg-query -W -f='${Status}' stress ";
+				
 
 			Channel channel = session.openChannel("exec");
 			((ChannelExec) channel).setCommand(command);
-
 			channel.setInputStream(null);
 
 			((ChannelExec) channel).setErrStream(System.err);
@@ -85,19 +109,28 @@ public class VMcpuStress {
 			}
 			channel.disconnect();
 			String command2 = null;
+			if  (localOS.equals("CENTOS"))
+			{
+				command2 = "wget http://dl.fedoraproject.org/pub/epel/6/x86_64/stress-1.0.4-4.el6.x86_64.rpm && rpm -ivh stress-1.0.4-4.el6.x86_64.rpm; stress -c " + cores + " -t " + time;
+				LoggerWrapper.myLogger.info("Installing Stress tool if required and running test..... ");
 
-			// Currently only runs for Ubuntu
-			//Will need check for other OS/commands 
-			if (info == null) {
+				}
+			
+			else if  (localOS.equals("UBUNTU"))
+			
+				{
+			
+				if (info == null) {
+					
+					command2 = "sudo apt-get -q -y install stress; stress -c " + cores + " -t " + time;
+					LoggerWrapper.myLogger.info("Stress tool not found..Installing...... The running test");
+				}
 
-				command2 = "sudo apt-get -q -y install stress";
-				LoggerWrapper.myLogger.info("Stress tool not found..Installing......");
-			}
-
-			else if (info.equals("install ok installed")) {
-				command2 = "stress -c " + cores + " -t " + time;
-				LoggerWrapper.myLogger.info("Stress tool found..running test......");
-			}
+				else if (info.equals("install ok installed")) {
+					command2 = "stress -c " + cores + " -t " + time;
+					LoggerWrapper.myLogger.info("Stress tool found..running test......");
+				}
+				}
 
 			Channel channel2 = session.openChannel("exec");
 			((ChannelExec) channel2).setCommand(command2);
