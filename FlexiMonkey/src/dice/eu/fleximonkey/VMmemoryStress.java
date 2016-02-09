@@ -7,6 +7,26 @@ import java.io.*;
 public class VMmemoryStress {
 
 	public void stressmemory(String host, String vmpassword,String memorytesterloops,String memeorytotal,String sshkeypath) {
+		
+		OSChecker oscheck = new OSChecker();
+		oscheck.oscheck(host, vmpassword, sshkeypath);
+		String localOS = oscheck.OSVERSION;
+		LoggerWrapper.myLogger.info("Got here");
+		LoggerWrapper.myLogger.info(localOS);
+
+		//String localOS = "CENTOS";
+		String command;
+		
+		if (localOS.equals("UBUNTU"))
+		{
+		command ="dpkg-query -W -f='${Status}' memtester";
+
+		}
+		else
+		{
+			//CENTOS will not accept first command so "dud" command sent
+		command ="";
+		}
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(baos));
 		@SuppressWarnings("unused")
@@ -20,39 +40,40 @@ public class VMmemoryStress {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		try {
 
+		
+		try {
+			
 			String info = null;
 
-			// String privateKey = ".ssh/id_rsa";
-
-			// Add check before attempting SSH. ping?
 			JSch jsch = new JSch();
 
 			String user = host.substring(0, host.indexOf('@'));
 			host = host.substring(host.indexOf('@') + 1);
 
 			Session session = jsch.getSession(user, host, 22);
-			 if (sshkeypath.equals("-no")) {
+			  if (sshkeypath.equals("-no")) {
 				 session.setPassword(vmpassword);
 			  }
 			  else if (vmpassword.equals("-no"))
 			  {
 					 jsch.addIdentity(sshkeypath);
 			  }
+
+			session.setPassword(vmpassword);
+		
+		
+		
 			java.util.Properties config = new java.util.Properties();
 			config.put("StrictHostKeyChecking", "no");
 			session.setConfig(config);
+		
 			session.connect();
 			LoggerWrapper.myLogger.info("Attempting to SSH to VM with ip " + host);
-
-			// Look at ways to get number of CPU's to run test.
-			// String command="cat /proc/cpuinfo | grep processor | wc -l";
-			String command = "dpkg-query -W -f='${Status}' memtester ";
+				
 
 			Channel channel = session.openChannel("exec");
 			((ChannelExec) channel).setCommand(command);
-
 			channel.setInputStream(null);
 
 			((ChannelExec) channel).setErrStream(System.err);
@@ -86,28 +107,30 @@ public class VMmemoryStress {
 			}
 			channel.disconnect();
 			String command2 = null;
-			if (info == null) {
-				// command2="sudo stress -m 1 --vm-bytes 512M -t 10s";
-				command2 = "sudo apt-get -q -y install memtester";
-				LoggerWrapper.myLogger.info("MemTester tool not found..Installing......");
+			if  (localOS.equals("CENTOS"))
+			{
+				command2 = "sudo wget http://rpms.famillecollet.com/enterprise/remi-release-6.rpm && rpm -Uvh remi-release-6*.rpm && sudp yum -y update && sudo yum install memtester; memtester " + memeorytotal +" "+ memorytesterloops;
 
-			}
+				LoggerWrapper.myLogger.info("MemTester tool running");				
 
-			// check not getting called with error
+				}
+			
+			else if  (localOS.equals("UBUNTU"))
+			
+				{
+			
+				if (info == null) {
+					
+					command2 = "sudo apt-get -q -y install memtester";
+					LoggerWrapper.myLogger.info("MemTester tool not found..Installing......");
+				}
 
-			else if (info.equals("install ok installed")) {
-				// command2="sudo apt-get -q -y install memtester";
-				// command2=" sudo stress -c 1 -i 2 -m 2 --vm-bytes 512M -t 2m";
-				command2 = " sudo memtester "+ memeorytotal +" "+ memorytesterloops;
-
-				//command2 = " sudo memtester 512M " + memorytesterloops;
-				LoggerWrapper.myLogger.info("memtester loop number: "
-						+ memorytesterloops);
-
-				
-				// command2="sudo stress -m 1 --vm-bytes 512M -t 2m";
-				// command2="stress -c "+ cores + " -t "+ time;
-				LoggerWrapper.myLogger.info("MemTest tool found..running test......");
+				else if (info.equals("install ok installed")) {
+					command2 = " sudo memtester "+ memeorytotal +" "+ memorytesterloops;
+					LoggerWrapper.myLogger.info("MemTest tool found..running test......");
+					LoggerWrapper.myLogger.info("memtester loop number: "
+							+ memorytesterloops);
+				}
 			}
 
 			Channel channel2 = session.openChannel("exec");
