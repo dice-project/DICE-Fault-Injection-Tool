@@ -3,7 +3,7 @@
   <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;workbench>&#xA;&lt;mruList/>&#xA;&lt;/workbench>"/>
   <tags>activeSchemeId:org.eclipse.ui.defaultAcceleratorConfiguration</tags>
   <tags>ModelMigrationProcessor.001</tags>
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_Xfu04sZtEeW6rvhSaqgy7g" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_YDGAosZtEeW6rvhSaqgy7g" label="%trimmedwindow.label.eclipseSDK" x="1394" y="59" width="1024" height="768">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_Xfu04sZtEeW6rvhSaqgy7g" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_YDGAosZtEeW6rvhSaqgy7g" label="%trimmedwindow.label.eclipseSDK" x="30" y="23" width="1024" height="768">
     <persistedState key="coolBarVisible" value="true"/>
     <persistedState key="perspectiveBarVisible" value="true"/>
     <persistedState key="isRestored" value="true"/>
@@ -89,11 +89,12 @@
                 <children xsi:type="advanced:Placeholder" xmi:id="_YRm9zMZtEeW6rvhSaqgy7g" elementId="org.eclipse.egit.ui.RepositoriesView" toBeRendered="false" ref="_YRkhgMZtEeW6rvhSaqgy7g"/>
               </children>
             </children>
-            <children xsi:type="basic:PartSashContainer" xmi:id="_YRm9zcZtEeW6rvhSaqgy7g" containerData="7500">
-              <children xsi:type="basic:PartSashContainer" xmi:id="_YRm9zsZtEeW6rvhSaqgy7g" containerData="7500" horizontal="true">
+            <children xsi:type="basic:PartSashContainer" xmi:id="_YRm9zcZtEeW6rvhSaqgy7g" containerData="7500" selectedElement="_YRm9zsZtEeW6rvhSaqgy7g">
+              <children xsi:type="basic:PartSashContainer" xmi:id="_YRm9zsZtEeW6rvhSaqgy7g" containerData="7500" selectedElement="_YRm90MZtEeW6rvhSaqgy7g" horizontal="true">
                 <children xsi:type="advanced:Placeholder" xmi:id="_YRm9z8ZtEeW6rvhSaqgy7g" elementId="org.eclipse.ui.editorss" containerData="7500" ref="_YRNVIMZtEeW6rvhSaqgy7g"/>
-                <children xsi:type="basic:PartSashContainer" xmi:id="_YRm90MZtEeW6rvhSaqgy7g" containerData="2500">
+                <children xsi:type="basic:PartSashContainer" xmi:id="_YRm90MZtEeW6rvhSaqgy7g" containerData="2500" selectedElement="_YRm90cZtEeW6rvhSaqgy7g">
                   <children xsi:type="basic:PartStack" xmi:id="_YRm90cZtEeW6rvhSaqgy7g" elementId="org.eclipse.mylyn.tasks.ui.views.tasksMStack" containerData="5000" selectedElement="_YRm90sZtEeW6rvhSaqgy7g">
+                    <tags>noFocus</tags>
                     <children xsi:type="advanced:Placeholder" xmi:id="_YRm90sZtEeW6rvhSaqgy7g" elementId="org.eclipse.mylyn.tasks.ui.views.tasks" ref="_YRlIkMZtEeW6rvhSaqgy7g"/>
                   </children>
                   <children xsi:type="basic:PartStack" xmi:id="_YRm908ZtEeW6rvhSaqgy7g" elementId="right" containerData="5000" selectedElement="_YRm91MZtEeW6rvhSaqgy7g">
@@ -256,7 +257,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_YFIoAMZtEeW6rvhSaqgy7g" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_YFVcUMZtEeW6rvhSaqgy7g" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_Xgd03MZtEeW6rvhSaqgy7g"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_7WAdsM8KEeWxSZHYHxJnaQ" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_Xgd03MZtEeW6rvhSaqgy7g"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_YFJPEMZtEeW6rvhSaqgy7g" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -277,7 +278,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_YFJPFMZtEeW6rvhSaqgy7g" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_YFXRgMZtEeW6rvhSaqgy7g" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_Xgb_lcZtEeW6rvhSaqgy7g"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_7WEIEM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_Xgb_lcZtEeW6rvhSaqgy7g"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_YFJ2IMZtEeW6rvhSaqgy7g" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -591,7 +592,8 @@
     <bindings xmi:id="_XhrVoMZtEeW6rvhSaqgy7g" keySequence="ALT+COMMAND+Q Q" command="_XgaKWcZtEeW6rvhSaqgy7g">
       <tags>platform:cocoa</tags>
     </bindings>
-    <bindings xmi:id="_Xh9pgsZtEeW6rvhSaqgy7g" keySequence="COMMAND+CTRL+F" command="_Xh9pgMZtEeW6rvhSaqgy7g"/>
+    <bindings xmi:id="_6-i_8M8KEeWxSZHYHxJnaQ" keySequence="ALT+SHIFT+G" command="_691OQs8KEeWxSZHYHxJnaQ"/>
+    <bindings xmi:id="_6_FLcM8KEeWxSZHYHxJnaQ" keySequence="COMMAND+CTRL+F" command="_Xh9pgMZtEeW6rvhSaqgy7g"/>
   </bindingTables>
   <bindingTables xmi:id="_XhOCoMZtEeW6rvhSaqgy7g" elementId="org.eclipse.wst.sse.ui.structuredTextEditorScope" bindingContext="_XglJhcZtEeW6rvhSaqgy7g">
     <bindings xmi:id="_XhOCocZtEeW6rvhSaqgy7g" keySequence="CTRL+SHIFT+ARROW_LEFT" command="_XgYVJ8ZtEeW6rvhSaqgy7g">
@@ -870,7 +872,7 @@
     <bindings xmi:id="_XhkA68ZtEeW6rvhSaqgy7g" keySequence="F1" command="_XgWgAsZtEeW6rvhSaqgy7g"/>
   </bindingTables>
   <bindingTables xmi:id="_Xh-Qk8ZtEeW6rvhSaqgy7g" contributorURI="platform:/fragment/org.eclipse.e4.ui.workbench.renderers.swt.cocoa" bindingContext="_Xfvb9MZtEeW6rvhSaqgy7g">
-    <bindings xmi:id="_Xh-QlMZtEeW6rvhSaqgy7g" keySequence="M1+W" command="_Xh-QkcZtEeW6rvhSaqgy7g"/>
+    <bindings xmi:id="_6_FygM8KEeWxSZHYHxJnaQ" keySequence="M1+W" command="_Xh-QkcZtEeW6rvhSaqgy7g"/>
   </bindingTables>
   <bindingTables xmi:id="_YRPxYcZtEeW6rvhSaqgy7g" bindingContext="_YRPxYMZtEeW6rvhSaqgy7g"/>
   <bindingTables xmi:id="_YRQYccZtEeW6rvhSaqgy7g" bindingContext="_YRQYcMZtEeW6rvhSaqgy7g"/>
@@ -1275,6 +1277,74 @@
   <descriptors xmi:id="_Xm8QIMZtEeW6rvhSaqgy7g" elementId="org.eclipse.team.svn.ui.lock.LocksView" label="SVN Locks" iconURI="platform:/plugin/org.eclipse.team.svn.ui/icons/views/locksview.gif" tooltip="" category="SVN" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView">
     <tags>View</tags>
     <tags>categoryTag:SVN</tags>
+  </descriptors>
+  <descriptors xmi:id="_7CGDMM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.cdo.explorer.ui.CDORepositoriesView" label="CDO Repositories" iconURI="platform:/plugin/org.eclipse.emf.cdo.ui.shared/icons/full/view16/locations.gif" tooltip="" category="CDO" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView">
+    <tags>View</tags>
+    <tags>categoryTag:CDO</tags>
+  </descriptors>
+  <descriptors xmi:id="_7CIfcM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.cdo.ui.CDOSessionsView" label="CDO Sessions" iconURI="platform:/plugin/org.eclipse.emf.cdo.ui.shared/icons/full/view16/cdo_sessions.gif" tooltip="" category="CDO" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView">
+    <tags>View</tags>
+    <tags>categoryTag:CDO</tags>
+  </descriptors>
+  <descriptors xmi:id="_7CKUoM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.cdo.ui.CDOWatchListView" label="CDO Watch List" iconURI="platform:/plugin/org.eclipse.emf.cdo.ui.shared/icons/full/view16/watch_list.gif" tooltip="" category="CDO" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView">
+    <tags>View</tags>
+    <tags>categoryTag:CDO</tags>
+  </descriptors>
+  <descriptors xmi:id="_7CLiwM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.cdo.ui.CDORemoteSessionsView" label="CDO Collaboration" iconURI="platform:/plugin/org.eclipse.emf.cdo.ui.shared/icons/full/view16/cdo_remote_sessions.gif" tooltip="" category="CDO" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView">
+    <tags>View</tags>
+    <tags>categoryTag:CDO</tags>
+  </descriptors>
+  <descriptors xmi:id="_7CN_AM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.cdo.ui.CDOTimeMachineView" label="CDO Time Machine" iconURI="platform:/plugin/org.eclipse.emf.cdo.ui.shared/icons/full/view16/cdo_time_machine.gif" tooltip="" category="CDO" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView">
+    <tags>View</tags>
+    <tags>categoryTag:CDO</tags>
+  </descriptors>
+  <descriptors xmi:id="_7CP0MM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.cdo.ui.admin.CDOAdminView" label="CDO Administration" iconURI="platform:/plugin/org.eclipse.emf.cdo.ui.admin/icons/full/view16/admin_view.gif" tooltip="" category="CDO" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView">
+    <tags>View</tags>
+    <tags>categoryTag:CDO</tags>
+  </descriptors>
+  <descriptors xmi:id="_7CRpYM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.compare.ide.ui.logicalmodel.view" label="Logical Model View" iconURI="platform:/plugin/org.eclipse.emf.compare.ide.ui/icons/full/eobj16/emfcompare-icon.gif" tooltip="" category="EMF Compare" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView">
+    <tags>View</tags>
+    <tags>categoryTag:EMF Compare</tags>
+  </descriptors>
+  <descriptors xmi:id="_7CUFoM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.example.databinding.project.ui.rcp.views.ProjectAdminViewPart" label="Project Administration" iconURI="platform:/plugin/org.eclipse.ui/icons/full/eview16/defaultview_misc.png" tooltip="" allowMultiple="true" category="Other" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView">
+    <tags>View</tags>
+    <tags>categoryTag:Other</tags>
+  </descriptors>
+  <descriptors xmi:id="_7CXI8M8KEeWxSZHYHxJnaQ" elementId="org.eclipse.p2.ui.admin.MetadataRepositoriesView" label="Metadata Repositories" iconURI="platform:/plugin/org.eclipse.equinox.p2.ui.admin/icons/obj/metadata_repo_obj.gif" tooltip="" category="Provisioning" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView">
+    <tags>View</tags>
+    <tags>categoryTag:Provisioning</tags>
+  </descriptors>
+  <descriptors xmi:id="_7CY-IM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.p2.ui.admin.ArtifactRepositoriesView" label="Artifact Repositories" iconURI="platform:/plugin/org.eclipse.equinox.p2.ui.admin/icons/obj/artifact_repo_obj.gif" tooltip="" category="Provisioning" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView">
+    <tags>View</tags>
+    <tags>categoryTag:Provisioning</tags>
+  </descriptors>
+  <descriptors xmi:id="_7CazUM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.p2.ui.admin.ProfilesView" label="Profiles" iconURI="platform:/plugin/org.eclipse.equinox.p2.ui.admin/icons/obj/profile_obj.gif" tooltip="" category="Provisioning" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView">
+    <tags>View</tags>
+    <tags>categoryTag:Provisioning</tags>
+  </descriptors>
+  <descriptors xmi:id="_7CgS4M8KEeWxSZHYHxJnaQ" elementId="org.eclipse.net4j.debug.RemoteTraceView" label="Remote Traces" iconURI="platform:/plugin/org.eclipse.net4j.debug/icons/text.gif" tooltip="" category="Debug" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView">
+    <tags>View</tags>
+    <tags>categoryTag:Debug</tags>
+  </descriptors>
+  <descriptors xmi:id="_7CivIM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.net4j.AcceptorsView" label="Acceptors" iconURI="platform:/plugin/org.eclipse.net4j.ui.shared/icons/full/view16/acceptors.gif" tooltip="" category="Net4j" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView">
+    <tags>View</tags>
+    <tags>categoryTag:Net4j</tags>
+  </descriptors>
+  <descriptors xmi:id="_7CkkUM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.net4j.ConnectorsView" label="Connectors" iconURI="platform:/plugin/org.eclipse.net4j.ui.shared/icons/full/view16/connectors.gif" tooltip="" category="Net4j" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView">
+    <tags>View</tags>
+    <tags>categoryTag:Net4j</tags>
+  </descriptors>
+  <descriptors xmi:id="_7ClycM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.net4j.util.Net4jContainerView" label="Container" iconURI="platform:/plugin/org.eclipse.net4j.ui.shared/icons/full/view16/container.gif" tooltip="" category="Net4j Debug" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView">
+    <tags>View</tags>
+    <tags>categoryTag:Net4j Debug</tags>
+  </descriptors>
+  <descriptors xmi:id="_7CnnoM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.net4j.util.Net4jIntrospectorView" label="Introspector" iconURI="platform:/plugin/org.eclipse.net4j.ui.shared/icons/full/view16/javabean.gif" tooltip="" category="Net4j Debug" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView">
+    <tags>View</tags>
+    <tags>categoryTag:Net4j Debug</tags>
+  </descriptors>
+  <descriptors xmi:id="_7CuVUM8KEeWxSZHYHxJnaQ" elementId="tools.descartes.dlim.generator.editor.views.PlotView" label="Load Intensity Plot" iconURI="platform:/plugin/tools.descartes.dlim.generator.editor/icons/sample.gif" tooltip="" category="Descartes Load Intensity Model" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView">
+    <tags>View</tags>
+    <tags>categoryTag:Descartes Load Intensity Model</tags>
   </descriptors>
   <trimContributions xmi:id="_2r10UF9tEeO-yojH_y4TJA" elementId="org.eclipse.ui.ide.application.trimcontribution.QuickAccess" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" toBeRendered="false" parentId="org.eclipse.ui.main.toolbar" positionInParent="last">
     <children xsi:type="menu:ToolControl" xmi:id="_76uUAF9tEeO-yojH_y4TJA" elementId="Spacer Glue" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.renderers.swt/org.eclipse.e4.ui.workbench.renderers.swt.LayoutModifierToolControl">
@@ -2253,6 +2323,68 @@
   <commands xmi:id="_YCmRYMZtEeW6rvhSaqgy7g" elementId="AUTOGEN:::org.eclipse.mylyn.tasks.ui.actions.view/org.eclipse.mylyn.tasks.ui.open.repositories.view" commandName="Show Task Repositories View" description="Show Task Repositories View" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
   <commands xmi:id="_YCmRYcZtEeW6rvhSaqgy7g" elementId="AUTOGEN:::org.eclipse.mylyn.tasks.ui.actions.view/org.eclipse.mylyn.doc.legend.show.action" commandName="Show UI Legend" description="Show Tasks UI Legend" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
   <commands xmi:id="_YCmRYsZtEeW6rvhSaqgy7g" elementId="AUTOGEN:::org.eclipse.mylyn.tasks.ui.actions.view/org.eclipse.mylyn.context.ui.actions.tasklist.focus" commandName="Focus on Workweek" description="Focus on Workweek" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_690nMM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.examples.databinding.project.ui.rcp.createtopproject" commandName="New Toplevel Project" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_690nMc8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.cdo.explorer.ui.WorkspaceCheckin" commandName="Checkin Workspace" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_690nMs8KEeWxSZHYHxJnaQ" elementId="org.eclipse.datatools.connectivity.commands.export" commandName="Export Profiles Command" description="Command to export connection profiles" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_690nM88KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.examples.databinding.project.ui.rcp.editperson" commandName="Edit Person" category="_XgS1qcZtEeW6rvhSaqgy7g">
+    <parameters xmi:id="_690nNM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.examples.databinding.project.ui.rcp.person.action" name="Action"/>
+  </commands>
+  <commands xmi:id="_690nNc8KEeWxSZHYHxJnaQ" elementId="org.eclipse.team.ui.compareWithEachOther" commandName="Each Other" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_690nNs8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.compare.ide.ui.compareInEditor" commandName="Compare in new Editor" category="_XgS1mcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_690nN88KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.cdo.explorer.ui.CheckoutOpen" commandName="Open Checkout" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_690nOM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.cdo.explorer.ui.WorkspaceRevert" commandName="Revert Workspace" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_690nOc8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.examples.databinding.project.ui.rcp.newxmi" commandName="New XMI" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_690nOs8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.examples.databinding.project.ui.rcp.openxmi" commandName="Open XMI" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_690nO88KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.cdo.ui.CreateBranch" commandName="Create Branch" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_690nPM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.datatools.connectivity.commands.addrepository" commandName="New Repository Profile Command" description="Command to create a new repository profile" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_690nPc8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.examples.databinding.project.ui.rcp.createsubproject" commandName="New Sublevel Project" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_690nPs8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.cdo.explorer.ui.RepositoryDisconnect" commandName="Disconnect Repository" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_690nP88KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.examples.databinding.project.ui.rcp.newperson" commandName="New Person" category="_XgS1qcZtEeW6rvhSaqgy7g">
+    <parameters xmi:id="_690nQM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.examples.databinding.project.ui.rcp.person.action" name="Action"/>
+  </commands>
+  <commands xmi:id="_690nQc8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.cdo.ui.UnlockObject" commandName="Unlock Object" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_690nQs8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.cdo.security.ui.openEditor" commandName="Manage Security" category="_69yyAc8KEeWxSZHYHxJnaQ"/>
+  <commands xmi:id="_690nQ88KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.compare.ide.ui.compareInDialog" commandName="Compare in Dialog" category="_XgS1mcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_690nRM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.cdo.explorer.ui.CheckoutClose" commandName="Close Checkout" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_690nRc8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.cdo.security.ui.resetPassword" commandName="Reset Password" description="Reset the selected user's password. Must be an administrator to reset passwords." category="_69yyAc8KEeWxSZHYHxJnaQ"/>
+  <commands xmi:id="_690nRs8KEeWxSZHYHxJnaQ" elementId="org.eclipse.datatools.connectivity.commands.addprofile" commandName="New Connection Profile Command" description="Command to create a new connection profile" category="_XgS1qcZtEeW6rvhSaqgy7g">
+    <parameters xmi:id="_690nR88KEeWxSZHYHxJnaQ" elementId="org.eclipse.datatools.connectivity.ui.ignoreCategory" name="ignoreCategory"/>
+    <parameters xmi:id="_690nSM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.datatools.connectivity.ui.useSelection" name="useSelection"/>
+  </commands>
+  <commands xmi:id="_690nSc8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.cdo.ui.UnlockTree" commandName="Unlock Tree" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_691OQM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.cdo.explorer.ui.RepositoryCheckout" commandName="Checkout Repository" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_691OQc8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.examples.databinding.project.ui.rcp.editcommittership" commandName="Edit Committership" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_691OQs8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.codegen.ecore.ui.Generate" commandName="Generate Code" description="Generate code for the EMF models in the workspace" category="_69yyAs8KEeWxSZHYHxJnaQ"/>
+  <commands xmi:id="_691OQ88KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.cdo.explorer.ui.RepositoryCheckoutQuick" commandName="Checkout Repository Quick" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_691ORM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.cdo.explorer.ui.CheckoutDuplicate" commandName="Duplicate Checkout" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_691ORc8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.cdo.ui.LockObject" commandName="Lock Object" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_691ORs8KEeWxSZHYHxJnaQ" elementId="org.eclipse.datatools.connectivity.commands.import" commandName="Import Profiles Command" description="Command to import connection profiles" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_691OR88KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.cdo.explorer.ui.RepositoryConnect" commandName="Connect Repository" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_691OSM8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.cdo.explorer.ui.WorkspaceUpdate" commandName="Update Workspace" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_691OSc8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.examples.databinding.project.ui.rcp.newcommittership" commandName="New Committership" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_691OSs8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.cdo.ui.LockTree" commandName="Lock Tree" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_7StSEM8KEeWxSZHYHxJnaQ" elementId="AUTOGEN:::org.eclipse.emf.exporter.genModelEditorContribution/org.eclipse.emf.exporter.ui.GenModelExportActionDelegate.Editor" commandName="Export Model..." category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_7St5IM8KEeWxSZHYHxJnaQ" elementId="AUTOGEN:::org.eclipse.emf.importer.genModelEditorContribution/org.eclipse.emf.importer.ui.GenModelReloadActionDelegate.Editor" commandName="Reload..." category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_7SugMM8KEeWxSZHYHxJnaQ" elementId="AUTOGEN:::org.eclipse.emf.mapping.ecore2ecore.presentation.Ecore2EcoreContributionID/org.eclipse.emf.mapping.action.RemoveMappingActionID" commandName="Remove Mapping" description="Remove the mapping associated with the selected objects." category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_7SugMc8KEeWxSZHYHxJnaQ" elementId="AUTOGEN:::org.eclipse.emf.mapping.ecore2ecore.presentation.Ecore2EcoreContributionID/org.eclipse.emf.mapping.action.TypeMatchMappingActionID" commandName="Match Mapping by Type" description="Create child mappings automatically by type." category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_7SugMs8KEeWxSZHYHxJnaQ" elementId="AUTOGEN:::org.eclipse.emf.mapping.ecore2ecore.presentation.Ecore2EcoreContributionID/org.eclipse.emf.mapping.action.NameMatchMappingActionID" commandName="Match Mapping by Name" description="Create child mappings automatically by name." category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_7SvHQM8KEeWxSZHYHxJnaQ" elementId="AUTOGEN:::org.eclipse.emf.mapping.ecore2ecore.presentation.Ecore2EcoreContributionID/org.eclipse.emf.mapping.action.CreateOneSidedMappingActionID" commandName="Create One-sided Mapping" description="Create a new mapping for the selected object." category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_7SvHQc8KEeWxSZHYHxJnaQ" elementId="AUTOGEN:::org.eclipse.emf.mapping.ecore2ecore.presentation.Ecore2EcoreContributionID/org.eclipse.emf.mapping.action.CreateMappingActionID" commandName="Create Mapping" description="Create a new mapping between the selected objects." category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_7SvHQs8KEeWxSZHYHxJnaQ" elementId="AUTOGEN:::org.eclipse.emf.mapping.ecore2ecore.presentation.Ecore2EcoreContributionID/org.eclipse.emf.mapping.ecore2ecore.action.AddOuputRootActionID" commandName="Add Output Root..." description="Add new output root." category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_7SvHQ88KEeWxSZHYHxJnaQ" elementId="AUTOGEN:::org.eclipse.emf.mapping.ecore2ecore.presentation.Ecore2EcoreContributionID/org.eclipse.emf.mapping.ecore2ecore.action.AddInputRootActionID" commandName="Add Input Root..." description="Add new input root." category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_7SvuUM8KEeWxSZHYHxJnaQ" elementId="AUTOGEN:::org.eclipse.emf.mapping.xsd2ecore.presentation.XSD2EcoreContributionID/org.eclipse.emf.mapping.action.TypeMatchMappingActionID" commandName="Match Mapping by Type" description="Create child mappings automatically by type." category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_7SvuUc8KEeWxSZHYHxJnaQ" elementId="AUTOGEN:::org.eclipse.emf.mapping.xsd2ecore.presentation.XSD2EcoreContributionID/org.eclipse.emf.mapping.action.NameMatchMappingActionID" commandName="Match Mapping by Name" description="Create child mappings automatically by name." category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_7SvuUs8KEeWxSZHYHxJnaQ" elementId="AUTOGEN:::org.eclipse.emf.mapping.xsd2ecore.presentation.XSD2EcoreContributionID/org.eclipse.emf.mapping.action.CreateOneSidedMappingActionID" commandName="Create One-sided Mapping" description="Create a new mapping for the selected object." category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_7SwVYM8KEeWxSZHYHxJnaQ" elementId="AUTOGEN:::org.eclipse.emf.mapping.xsd2ecore.presentation.XSD2EcoreContributionID/org.eclipse.emf.mapping.action.CreateMappingActionID" commandName="Create Mapping" description="Create a new mapping between the selected objects." category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_7SwVYc8KEeWxSZHYHxJnaQ" elementId="AUTOGEN:::org.eclipse.emf.mapping.xsd2ecore.presentation.XSD2EcoreContributionID/org.eclipse.emf.mapping.action.RemoveMappingActionID" commandName="Remove Mapping" description="Remove the mapping associated with the selected objects." category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_7Sw8cM8KEeWxSZHYHxJnaQ" elementId="AUTOGEN:::org.eclipse.emf.query.examples.ocl.editorContribution/org.eclipse.emf.query.examples.ocl.ContextFreeQueryAction" commandName="Context-free Query..." category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_7Sw8cc8KEeWxSZHYHxJnaQ" elementId="AUTOGEN:::org.eclipse.emf.query.examples.ocl.editorContribution/org.eclipse.emf.query.examples.ocl.OclQueryAction" commandName="Query with Context..." category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_7SxjgM8KEeWxSZHYHxJnaQ" elementId="AUTOGEN:::org.eclipse.emf.query.examples.statements.editorContribution/org.eclipse.emf.query.examples.statements.SelectBooksAction" commandName="Select Books" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_7Sxjgc8KEeWxSZHYHxJnaQ" elementId="AUTOGEN:::org.eclipse.emf.query.examples.statements.editorContribution/org.eclipse.emf.query.examples.statements.SelectWritersAction" commandName="Select Writers..." category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_7SyKkM8KEeWxSZHYHxJnaQ" elementId="AUTOGEN:::org.eclipse.emf.query.examples.statements.editorContribution/org.eclipse.emf.query.examples.statements.SelectLargeBooksAction" commandName="Select Large Books" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_7SyKkc8KEeWxSZHYHxJnaQ" elementId="AUTOGEN:::org.eclipse.emf.validation.examples.general.editorContribution/org.eclipse.emf.validation.pde.example.general.ui.validateAction" commandName="Validate Elements..." category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_7SyKks8KEeWxSZHYHxJnaQ" elementId="AUTOGEN:::org.eclipse.emf.validation.examples.general.editorContribution/org.eclipse.emf.validation.pde.example.general.ui.enableLiveValidationAction" commandName="Enable Live Validation" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
+  <commands xmi:id="_7SyxoM8KEeWxSZHYHxJnaQ" elementId="AUTOGEN:::org.eclipse.emf.validation.examples.general.editorContribution/org.eclipse.emf.validation.pde.example.general.ui.showValidationEventsAction" commandName="Show Validation Events" category="_XgS1qcZtEeW6rvhSaqgy7g"/>
   <addons xmi:id="_Xfvb9cZtEeW6rvhSaqgy7g" elementId="org.eclipse.e4.core.commands.service" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_Xfvb9sZtEeW6rvhSaqgy7g" elementId="org.eclipse.e4.ui.contexts.service" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_Xfvb98ZtEeW6rvhSaqgy7g" elementId="org.eclipse.e4.ui.bindings.service" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
@@ -2301,4 +2433,6 @@
   <categories xmi:id="_XgS1p8ZtEeW6rvhSaqgy7g" elementId="org.eclipse.mylyn.commons.repositories.ui.category.Team" name="Team"/>
   <categories xmi:id="_XgS1qMZtEeW6rvhSaqgy7g" elementId="org.eclipse.oomph.commands" name="Oomph"/>
   <categories xmi:id="_XgS1qcZtEeW6rvhSaqgy7g" elementId="org.eclipse.core.commands.categories.autogenerated" name="Uncategorized" description="Commands that were either auto-generated or have no category"/>
+  <categories xmi:id="_69yyAc8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.cdo.security.ui.management" name="CDO Security Management"/>
+  <categories xmi:id="_69yyAs8KEeWxSZHYHxJnaQ" elementId="org.eclipse.emf.codegen.ecore.ui.Commands" name="EMF Code Generation" description="Commands for the EMF code generation tools"/>
 </application:Application>

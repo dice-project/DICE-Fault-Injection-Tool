@@ -8,3 +8,28 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.
 
 !ENTRY org.eclipse.core.net 1 0 2016-01-29 10:47:55.950
 !MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+!SESSION 2016-02-09 09:55:48.364 -----------------------------------------------
+eclipse.buildId=4.5.1.M20150904-0015
+java.version=1.8.0_71
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -keyring /Users/darrenw/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -data /Users/darrenw/Desktop/DICE-Fault-Injection-Tool/FlexiMonkey -product org.eclipse.epp.package.java.product -keyring /Users/darrenw/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2016-02-09 09:55:50.393
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.emf.ecore 2 0 2016-02-09 09:55:51.365
+!MESSAGE Both 'eu.cactosfp7.identifier' and 'eu.cactosfp7.identifier' register a package for 'http://www.cactosfp7.eu/Identifier/1.0'
+
+!ENTRY org.eclipse.emf.ecore 2 0 2016-02-09 09:55:51.366
+!MESSAGE Both 'eu.cactosfp7.infrastructuremodels' and 'eu.cactosfp7.infrastructuremodels' register a package for 'http://www.cactosfp7.eu/PhysicalDCModel/ArchitectureType/1.0'
+
+!ENTRY org.eclipse.emf.ecore 2 0 2016-02-09 09:55:51.367
+!MESSAGE Both 'eu.cactosfp7.infrastructuremodels' and 'eu.cactosfp7.infrastructuremodels' register a package for 'http://www.cactosfp7.eu/LogicalDCModel/Hypervisor/1.0'
+
+!ENTRY org.eclipse.emf.ecore 2 0 2016-02-09 09:55:51.367
+!MESSAGE Both 'eu.cactosfp7.infrastructuremodels' and 'eu.cactosfp7.infrastructuremodels' register a package for 'http://www.cactosfp7.eu/LogicalDCModel/Core/1.0'
+
+!ENTRY org.eclipse.emf.ecore 2 0 2016-02-09 09:55:51.378
+!MESSAGE Both 'eu.cactosfp7.infrastructuremodels' and 'eu.cactosfp7.infrastructuremodels' register an extension parser for 'core'
