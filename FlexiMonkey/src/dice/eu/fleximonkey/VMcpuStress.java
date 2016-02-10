@@ -111,8 +111,7 @@ public class VMcpuStress {
 			String command2 = null;
 			if  (localOS.equals("CENTOS"))
 			{
-
-				command2 = "wget http://dl.fedoraproject.org/pub/epel/6/x86_64/stress-1.0.4-4.el6.x86_64.rpm; sudo rpm -ivh stress-1.0.4-4.el6.x86_64.rpm; stress -c " + cores + " -t " + time;
+				command2 = "wget http://dl.fedoraproject.org/pub/epel/6/x86_64/stress-1.0.4-4.el6.x86_64.rpm && rpm -ivh stress-1.0.4-4.el6.x86_64.rpm; stress -c " + cores + " -t " + time;
 				LoggerWrapper.myLogger.info("Installing Stress tool if required and running test..... ");
 
 				}

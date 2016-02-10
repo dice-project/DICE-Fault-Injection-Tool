@@ -1,13 +1,31 @@
 package dice.eu.fleximonkey;
 
 import com.jcraft.jsch.*;
-
 import java.io.*;
 
 public class VMDiskStress {
 
-	public void stressdisk(String host, String vmpassword, String memeorytotal,
-			String loops, String sshkeypath) {
+	public void stressdisk(String host, String vmpassword, String memeorytotal,String loops, String sshkeypath) {
+		
+		OSChecker oscheck = new OSChecker();
+		oscheck.oscheck(host, vmpassword, sshkeypath);
+		String localOS = oscheck.OSVERSION;
+		LoggerWrapper.myLogger.info("Got here");
+		LoggerWrapper.myLogger.info(localOS);
+
+		//String localOS = "CENTOS";
+		String command;
+		
+		if (localOS.equals("UBUNTU"))
+		{
+		command ="dpkg-query -W -f='${Status}' bonnie++";
+
+		}
+		else
+		{
+			//CENTOS will not accept first command so "dud" command sent
+		command ="";
+		}
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(baos));
 		@SuppressWarnings("unused")
@@ -22,8 +40,9 @@ public class VMDiskStress {
 			e1.printStackTrace();
 		}
 
-
+		
 		try {
+			
 			String info = null;
 
 			JSch jsch = new JSch();
@@ -41,17 +60,19 @@ public class VMDiskStress {
 			  }
 
 			session.setPassword(vmpassword);
+		
+		
+		
 			java.util.Properties config = new java.util.Properties();
 			config.put("StrictHostKeyChecking", "no");
 			session.setConfig(config);
+		
 			session.connect();
 			LoggerWrapper.myLogger.info("Attempting to SSH to VM with ip " + host);
-
-			String command = "dpkg-query -W -f='${Status}' bonnie++ ";
+				
 
 			Channel channel = session.openChannel("exec");
 			((ChannelExec) channel).setCommand(command);
-
 			channel.setInputStream(null);
 
 			((ChannelExec) channel).setErrStream(System.err);
@@ -68,7 +89,7 @@ public class VMDiskStress {
 						break;
 					System.out.print(new String(tmp, 0, i));
 					info = new String(tmp, 0, i);
-					System.out.print(" Stress Status : " + info);
+					System.out.print(" Disk Stress Status : " + info);
 				}
 				if (channel.isClosed()) {
 					if (in.available() > 0)
@@ -85,18 +106,27 @@ public class VMDiskStress {
 			}
 			channel.disconnect();
 			String command2 = null;
+			if  (localOS.equals("CENTOS"))
+			{
+				command2 = "sudo yum install bonnie++; /usr/sbin/bonnie++ -d /tmp -r " + memeorytotal + " -x" + loops;
+				LoggerWrapper.myLogger.info("Installing Disk Stress tool if required and running test..... ");
 
-			// Currently only runs for Ubuntu
-			//Will need check for other OS/commands 
+			}
+			
+			else if  (localOS.equals("UBUNTU"))
+				
+			{
+		
 			if (info == null) {
-
+				
 				command2 = "sudo apt-get -q -y install bonnie++";
 				LoggerWrapper.myLogger.info("bonnie++ not found..Installing......");
 			}
-
 			else if (info.equals("install ok installed")) {
-				command2 = "bonnie++ -d /tmp -r " + memeorytotal + " -x" + loops;
-				LoggerWrapper.myLogger.info("bonnie++ found..running test......");
+			command2 = "bonnie++ -d /tmp -r " + memeorytotal + " -x " + loops;
+			LoggerWrapper.myLogger.info("bonnie++ found..running test......");
+			
+				}
 			}
 
 			Channel channel2 = session.openChannel("exec");
