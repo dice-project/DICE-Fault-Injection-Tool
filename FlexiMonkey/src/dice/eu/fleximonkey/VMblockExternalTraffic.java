@@ -1,12 +1,16 @@
 package dice.eu.fleximonkey;
 
 import com.jcraft.jsch.*;
-
 import java.io.*;
 
 public class VMblockExternalTraffic {
 
-	public void blockfirewall(String host,String vmpassword, String sshkeypath) {
+	public void blockfirewall(String host,String vmpassword, String sshkeypath) {		
+		OSChecker oscheck = new OSChecker();
+		oscheck.oscheck(host, vmpassword, sshkeypath);
+		String localOS = oscheck.OSVERSION;
+		LoggerWrapper.myLogger.info(localOS);
+
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(baos));
 		@SuppressWarnings("unused")
@@ -20,6 +24,8 @@ public class VMblockExternalTraffic {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+
+		
 		try {
 			
 			String info = null;
@@ -30,7 +36,7 @@ public class VMblockExternalTraffic {
 			host = host.substring(host.indexOf('@') + 1);
 
 			Session session = jsch.getSession(user, host, 22);
-			 if (sshkeypath.equals("-no")) {
+			  if (sshkeypath.equals("-no")) {
 				 session.setPassword(vmpassword);
 			  }
 			  else if (vmpassword.equals("-no"))
@@ -38,16 +44,15 @@ public class VMblockExternalTraffic {
 					 jsch.addIdentity(sshkeypath);
 			  }
 
+			session.setPassword(vmpassword);
+		
 			java.util.Properties config = new java.util.Properties();
 			config.put("StrictHostKeyChecking", "no");
 			session.setConfig(config);
+		
 			session.connect();
-			LoggerWrapper.myLogger.info( "Attempting to SSH to VM with ip " + host);
-
-			String command = "dpkg-query -W -f='${Status}' ufw ";
 
 			Channel channel = session.openChannel("exec");
-			((ChannelExec) channel).setCommand(command);
 
 			channel.setInputStream(null);
 
@@ -55,47 +60,24 @@ public class VMblockExternalTraffic {
 
 			InputStream in = channel.getInputStream();
 
-			channel.connect();
 
 			byte[] tmp = new byte[1024];
-			while (true) {
-				while (in.available() > 0) {
-					int i = in.read(tmp, 0, 1024);
-					if (i < 0)
-						break;
-					System.out.print(new String(tmp, 0, i));
-					info = new String(tmp, 0, i);
-					System.out.print(" Stress Status : " + info);
-				}
-				if (channel.isClosed()) {
-					if (in.available() > 0)
-						continue;
-					System.out.println("exit-status: "
-							+ channel.getExitStatus());
-					break;
-				}
-				try {
-					Thread.sleep(1000);
-				} catch (Exception ee) {
-				}
-
-			}
-			channel.disconnect();
+			
 			String command2 = null;
+			if  (localOS.equals("CENTOS"))
+			{
+				command2 = "sudo yum install epel-release; sudo systemctl start firewalld && sudo firewall-cmd --permanent --add-service=ssh && sudo firewall-cmd --reload ";
+				LoggerWrapper.myLogger.info("Installing Firewall tool if required and running test..... ");
 
-			// Currently only runs for Ubuntu
-			//Will need check for other OS/commands 
-			if (info == null) {
-
-				command2 = "sudo apt-get install ufw";
-				LoggerWrapper.myLogger.info("ufm not found..Installing......");
 			}
+			
+			else if  (localOS.equals("UBUNTU"))
+				
+			{
 
-			// check not getting called with error
-
-			else if (info.equals("install ok installed")) {
-				command2 = "echo y | sudo ufw enable";
+				command2 = "sudo apt-get install ufw; echo y | sudo ufw enable";
 				LoggerWrapper.myLogger.info( "ufw  found..setting firewall and disabling external connections......");
+	
 			}
 
 			Channel channel2 = session.openChannel("exec");

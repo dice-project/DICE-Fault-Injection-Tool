@@ -10,7 +10,6 @@ public class VMDiskStress {
 		OSChecker oscheck = new OSChecker();
 		oscheck.oscheck(host, vmpassword, sshkeypath);
 		String localOS = oscheck.OSVERSION;
-		LoggerWrapper.myLogger.info("Got here");
 		LoggerWrapper.myLogger.info(localOS);
 
 		//String localOS = "CENTOS";
