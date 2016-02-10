@@ -1,13 +1,30 @@
 package dice.eu.fleximonkey;
 
 import com.jcraft.jsch.*;
-
 import java.io.*;
-
 
 public class NetworkBandwidthStress {
 
 	public void networkbandwidthstress(String host, String vmpassword,String iperfserver,String time,String sshkeypath) {
+		
+		OSChecker oscheck = new OSChecker();
+		oscheck.oscheck(host, vmpassword, sshkeypath);
+		String localOS = oscheck.OSVERSION;
+		LoggerWrapper.myLogger.info(localOS);
+
+		//String localOS = "CENTOS";
+		String command;
+		
+		if (localOS.equals("UBUNTU"))
+		{
+		command ="sudo apt-get -q -y install iperf";
+
+		}
+		else
+		{
+			//CENTOS will not accept first command so "dud" command sent
+		command ="";
+		}
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(baos));
 		@SuppressWarnings("unused")
@@ -21,10 +38,11 @@ public class NetworkBandwidthStress {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+
+		
 		try {
-
+			
 			String info = null;
-
 
 			JSch jsch = new JSch();
 
@@ -32,26 +50,28 @@ public class NetworkBandwidthStress {
 			host = host.substring(host.indexOf('@') + 1);
 
 			Session session = jsch.getSession(user, host, 22);
-			 if (sshkeypath.equals("-no")) {
+			  if (sshkeypath.equals("-no")) {
 				 session.setPassword(vmpassword);
 			  }
 			  else if (vmpassword.equals("-no"))
 			  {
 					 jsch.addIdentity(sshkeypath);
 			  }
+
+			session.setPassword(vmpassword);
+		
+		
+		
 			java.util.Properties config = new java.util.Properties();
 			config.put("StrictHostKeyChecking", "no");
 			session.setConfig(config);
+		
 			session.connect();
 			LoggerWrapper.myLogger.info("Attempting to SSH to VM with ip " + host);
-
-			// Look at ways to get number of CPU's to run test.
-		
-			String command = "dpkg-query -W -f='${Status}' iperf ";
+				
 
 			Channel channel = session.openChannel("exec");
 			((ChannelExec) channel).setCommand(command);
-
 			channel.setInputStream(null);
 
 			((ChannelExec) channel).setErrStream(System.err);
@@ -68,7 +88,7 @@ public class NetworkBandwidthStress {
 						break;
 					System.out.print(new String(tmp, 0, i));
 					info = new String(tmp, 0, i);
-					System.out.print(" Stress Status : " + info);
+					System.out.print(" Disk Stress Status : " + info);
 				}
 				if (channel.isClosed()) {
 					if (in.available() > 0)
@@ -85,20 +105,27 @@ public class NetworkBandwidthStress {
 			}
 			channel.disconnect();
 			String command2 = null;
-			if (info == null) {
-				command2 = "sudo apt-get -q -y install iperf";
-				LoggerWrapper.myLogger.info("iperf tool not found..Installing......");
+			if  (localOS.equals("CENTOS"))
+			{
+				command2 = "sudo yum install iperf; sudo iperf -c "+ iperfserver +" -m "+" -t " + time;
+				LoggerWrapper.myLogger.info("Installing iperf tool if required then running command");
 
 			}
-
-			// check not getting called with error
-
+			
+			else if  (localOS.equals("UBUNTU"))
+				
+			{
+		
+			if (info == null) {
+				
+				command2 = "sudo apt-get -q -y install iperf";
+				LoggerWrapper.myLogger.info("iperf tool not found..Installing......");
+			}
 			else if (info.equals("install ok installed")) {
-
-				command2 = " sudo iperf -c "+ iperfserver +" -m "+" -t " + time;
-
-				LoggerWrapper.myLogger.info("iperf running loop for: "
-						+ time);
+			command2 = "sudo iperf -c "+ iperfserver +" -m "+" -t " + time;
+			LoggerWrapper.myLogger.info("iperf running loop for: "
+					+ time);			
+				}
 			}
 
 			Channel channel2 = session.openChannel("exec");
