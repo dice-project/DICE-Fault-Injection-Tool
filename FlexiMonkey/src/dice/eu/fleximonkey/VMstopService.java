@@ -1,12 +1,18 @@
 package dice.eu.fleximonkey;
 
 import com.jcraft.jsch.*;
-
 import java.io.*;
 
 public class VMstopService {
 
 	public void stopservice(String host, String vmpassword,String service,String sshkeypath) {
+		
+		OSChecker oscheck = new OSChecker();
+		oscheck.oscheck(host, vmpassword, sshkeypath);
+		String localOS = oscheck.OSVERSION;
+		LoggerWrapper.myLogger.info(localOS);
+
+
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(baos));
 		@SuppressWarnings("unused")
@@ -20,57 +26,69 @@ public class VMstopService {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		try {
 
-			@SuppressWarnings("unused")
-			String info = null;
-			JSch jsch = new JSch();
+		
+		try {
 			
-			//Formats host information from user
+			String info = null;
+
+			JSch jsch = new JSch();
+
 			String user = host.substring(0, host.indexOf('@'));
 			host = host.substring(host.indexOf('@') + 1);
-			//Creates new SSH session
+
 			Session session = jsch.getSession(user, host, 22);
-			//Checks if password or SSH key path has been provided
-			 if (sshkeypath.equals("-no")) {
+			  if (sshkeypath.equals("-no")) {
 				 session.setPassword(vmpassword);
 			  }
 			  else if (vmpassword.equals("-no"))
 			  {
 					 jsch.addIdentity(sshkeypath);
 			  }
-			//Configures session and attempts SSH
+
+			session.setPassword(vmpassword);
+		
+		
+		
 			java.util.Properties config = new java.util.Properties();
 			config.put("StrictHostKeyChecking", "no");
 			session.setConfig(config);
+		
 			session.connect();
-			LoggerWrapper.myLogger.info( "Attempting to SSH to VM with ip " + host);
-			//Executes command on VM
-			String command = "sudo service " + service + " stop";
-			Channel channel = session.openChannel("exec");
-			((ChannelExec) channel).setCommand(command);
-			channel.setInputStream(null);
+			LoggerWrapper.myLogger.info("Attempting to SSH to VM with ip " + host);
+			String command2 = null;
+			if  (localOS.equals("CENTOS"))
+			{
+				command2 ="sudo /sbin/service " + service + " stop";
+			}
+			
+			else if  (localOS.equals("UBUNTU"))
+			{
+				 command2 = "sudo service " + service + " stop";
 
-			((ChannelExec) channel).setErrStream(System.err);
-
-			InputStream in = channel.getInputStream();
-
-			channel.connect();
-
+			LoggerWrapper.myLogger.info("bonnie++ found..running test......");
+			
+				
+			}
 			byte[] tmp = new byte[1024];
+			Channel channel2 = session.openChannel("exec");
+			((ChannelExec) channel2).setCommand(command2);
+			InputStream in1 = channel2.getInputStream();
+			channel2.connect();
 			while (true) {
-				while (in.available() > 0) {
-					int i = in.read(tmp, 0, 1024);
+				while (in1.available() > 0) {
+					int i = in1.read(tmp, 0, 1024);
 					if (i < 0)
 						break;
 					System.out.print(new String(tmp, 0, i));
 					info = new String(tmp, 0, i);
+					System.out.print(info);
 				}
-				if (channel.isClosed()) {
-					if (in.available() > 0)
+				if (channel2.isClosed()) {
+					if (in1.available() > 0)
 						continue;
 					System.out.println("exit-status: "
-							+ channel.getExitStatus());
+							+ channel2.getExitStatus());
 					break;
 				}
 				try {
@@ -79,13 +97,13 @@ public class VMstopService {
 				}
 
 			}
-			//Disconnects all session to VM
-			channel.disconnect();
+			in1.close();
+			channel2.disconnect();
 			session.disconnect();
 			LoggerWrapper.myLogger.info( baos.toString());
 
 		} catch (Exception e) {
-			LoggerWrapper.myLogger.severe("Unable to SSH to VM " +  e.toString());
+			LoggerWrapper.myLogger.severe("Unable to SSH to VM " + e.toString());
 		}
 	}
 }
