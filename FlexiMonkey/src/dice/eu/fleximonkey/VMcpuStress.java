@@ -9,14 +9,13 @@ public class VMcpuStress {
 
 	public void stresscpu(String cores, String time, String vmpassword,
 			String host, String sshkeypath) {
-		
+	
+		//Calls OS checker to determine if Ubuntu or Centos os
 		OSChecker oscheck = new OSChecker();
 		oscheck.oscheck(host, vmpassword, sshkeypath);
 		String localOS = oscheck.OSVERSION;
-		LoggerWrapper.myLogger.info("Got here");
-		LoggerWrapper.myLogger.info(localOS);
-
-		//String localOS = "CENTOS";
+		LoggerWrapper.myLogger.info(localOS);	
+		//Set up for First command sent
 		String command;
 		
 		if (localOS.equals("UBUNTU"))
@@ -54,26 +53,22 @@ public class VMcpuStress {
 			host = host.substring(host.indexOf('@') + 1);
 
 			Session session = jsch.getSession(user, host, 22);
-			  if (sshkeypath.equals("-no")) {
+			 //Used to determine if ssh key or password is proivded with command 
+			if (sshkeypath.equals("-no")) {
 				 session.setPassword(vmpassword);
-			  }
+			}
 			  else if (vmpassword.equals("-no"))
 			  {
 					 jsch.addIdentity(sshkeypath);
 			  }
 
-			session.setPassword(vmpassword);
-		
-		
-		
 			java.util.Properties config = new java.util.Properties();
 			config.put("StrictHostKeyChecking", "no");
 			session.setConfig(config);
-		
 			session.connect();
 			LoggerWrapper.myLogger.info("Attempting to SSH to VM with ip " + host);
 				
-
+			//Opens channel for sending first command.
 			Channel channel = session.openChannel("exec");
 			((ChannelExec) channel).setCommand(command);
 			channel.setInputStream(null);
@@ -92,6 +87,7 @@ public class VMcpuStress {
 						break;
 					System.out.print(new String(tmp, 0, i));
 					info = new String(tmp, 0, i);
+					//Outputs responce for ssh connection
 					System.out.print(" Stress Status : " + info);
 				}
 				if (channel.isClosed()) {
@@ -107,8 +103,11 @@ public class VMcpuStress {
 				}
 
 			}
+			//Closes after first command is sent
 			channel.disconnect();
+			//Sets up for second command
 			String command2 = null;
+			//Different commands used if Centos or Ubuntu OS is used.
 			if  (localOS.equals("CENTOS"))
 			{
 				command2 = "wget http://dl.fedoraproject.org/pub/epel/6/x86_64/stress-1.0.4-4.el6.x86_64.rpm && rpm -ivh stress-1.0.4-4.el6.x86_64.rpm; stress -c " + cores + " -t " + time;
@@ -117,20 +116,17 @@ public class VMcpuStress {
 				}
 			
 			else if  (localOS.equals("UBUNTU"))
-			
-				{
-			
+			{
 				if (info == null) {
 					
 					command2 = "sudo apt-get -q -y install stress; stress -c " + cores + " -t " + time;
 					LoggerWrapper.myLogger.info("Stress tool not found..Installing...... The running test");
 				}
-
 				else if (info.equals("install ok installed")) {
 					command2 = "stress -c " + cores + " -t " + time;
 					LoggerWrapper.myLogger.info("Stress tool found..running test......");
 				}
-				}
+			}
 
 			Channel channel2 = session.openChannel("exec");
 			((ChannelExec) channel2).setCommand(command2);
@@ -159,7 +155,9 @@ public class VMcpuStress {
 
 			}
 			in1.close();
+			//Close after second command
 			channel2.disconnect();
+			//Close session after all commands are done
 			session.disconnect();
 			LoggerWrapper.myLogger.info( baos.toString());
 

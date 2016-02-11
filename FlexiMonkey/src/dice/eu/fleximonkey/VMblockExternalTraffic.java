@@ -6,6 +6,9 @@ import java.io.*;
 public class VMblockExternalTraffic {
 
 	public void blockfirewall(String host,String vmpassword, String sshkeypath) {		
+		
+		//Calls OS checker to determine if Ubuntu or Centos os
+
 		OSChecker oscheck = new OSChecker();
 		oscheck.oscheck(host, vmpassword, sshkeypath);
 		String localOS = oscheck.OSVERSION;
@@ -36,7 +39,9 @@ public class VMblockExternalTraffic {
 			host = host.substring(host.indexOf('@') + 1);
 
 			Session session = jsch.getSession(user, host, 22);
-			  if (sshkeypath.equals("-no")) {
+			 //Used to determine if ssh key or password is proivded with command 
+
+			if (sshkeypath.equals("-no")) {
 				 session.setPassword(vmpassword);
 			  }
 			  else if (vmpassword.equals("-no"))
@@ -51,22 +56,14 @@ public class VMblockExternalTraffic {
 			session.setConfig(config);
 		
 			session.connect();
-
-			Channel channel = session.openChannel("exec");
-
-			channel.setInputStream(null);
-
-			((ChannelExec) channel).setErrStream(System.err);
-
-			InputStream in = channel.getInputStream();
-
-
 			byte[] tmp = new byte[1024];
 			
-			String command2 = null;
+			String command = null;
+			//Different commands used if Centos or Ubuntu OS is used.
+
 			if  (localOS.equals("CENTOS"))
 			{
-				command2 = "sudo yum install epel-release; sudo systemctl start firewalld && sudo firewall-cmd --permanent --add-service=ssh && sudo firewall-cmd --reload ";
+				command = "sudo yum install epel-release; sudo systemctl start firewalld && sudo firewall-cmd --permanent --add-service=ssh && sudo firewall-cmd --reload ";
 				LoggerWrapper.myLogger.info("Installing Firewall tool if required and running test..... ");
 
 			}
@@ -75,29 +72,30 @@ public class VMblockExternalTraffic {
 				
 			{
 
-				command2 = "sudo apt-get install ufw; echo y | sudo ufw enable";
+				command = "sudo apt-get install ufw; echo y | sudo ufw enable";
 				LoggerWrapper.myLogger.info( "ufw  found..setting firewall and disabling external connections......");
 	
 			}
 
-			Channel channel2 = session.openChannel("exec");
-			((ChannelExec) channel2).setCommand(command2);
-			InputStream in1 = channel2.getInputStream();
-			channel2.connect();
+			Channel channel = session.openChannel("exec");
+			((ChannelExec) channel).setCommand(command);
+			InputStream in = channel.getInputStream();
+			channel.connect();
 			while (true) {
-				while (in1.available() > 0) {
-					int i = in1.read(tmp, 0, 1024);
+				while (in.available() > 0) {
+					int i = in.read(tmp, 0, 1024);
 					if (i < 0)
 						break;
 					System.out.print(new String(tmp, 0, i));
 					info = new String(tmp, 0, i);
+					//Outputs responce for ssh connection
 					System.out.print(info);
 				}
-				if (channel2.isClosed()) {
+				if (channel.isClosed()) {
 					if (in.available() > 0)
 						continue;
 					System.out.println("exit-status: "
-							+ channel2.getExitStatus());
+							+ channel.getExitStatus());
 					break;
 				}
 				try {
@@ -106,8 +104,10 @@ public class VMblockExternalTraffic {
 				}
 
 			}
-			in1.close();
-			channel2.disconnect();
+			in.close();
+			//Close after command sent
+			channel.disconnect();
+			//Close session after all commands are done
 			session.disconnect();
 			LoggerWrapper.myLogger.info( baos.toString());
 

@@ -8,13 +8,12 @@ public class VMmemoryStress {
 
 	public void stressmemory(String host, String vmpassword,String memorytesterloops,String memeorytotal,String sshkeypath) {
 		
+		//Calls OS checker to determine if Ubuntu or Centos os
 		OSChecker oscheck = new OSChecker();
 		oscheck.oscheck(host, vmpassword, sshkeypath);
 		String localOS = oscheck.OSVERSION;
-		LoggerWrapper.myLogger.info("Got here");
 		LoggerWrapper.myLogger.info(localOS);
 
-		//String localOS = "CENTOS";
 		String command;
 		
 		if (localOS.equals("UBUNTU"))
@@ -52,7 +51,9 @@ public class VMmemoryStress {
 			host = host.substring(host.indexOf('@') + 1);
 
 			Session session = jsch.getSession(user, host, 22);
-			  if (sshkeypath.equals("-no")) {
+			 //Used to determine if ssh key or password is proivded with command 
+
+			if (sshkeypath.equals("-no")) {
 				 session.setPassword(vmpassword);
 			  }
 			  else if (vmpassword.equals("-no"))
@@ -71,7 +72,7 @@ public class VMmemoryStress {
 			session.connect();
 			LoggerWrapper.myLogger.info("Attempting to SSH to VM with ip " + host);
 				
-
+			//Opens channel for sending first command.
 			Channel channel = session.openChannel("exec");
 			((ChannelExec) channel).setCommand(command);
 			channel.setInputStream(null);
@@ -90,6 +91,7 @@ public class VMmemoryStress {
 						break;
 					System.out.print(new String(tmp, 0, i));
 					info = new String(tmp, 0, i);
+					//Outputs responce for ssh connection
 					System.out.print(" Stress Status : " + info);
 				}
 				if (channel.isClosed()) {
@@ -105,8 +107,11 @@ public class VMmemoryStress {
 				}
 
 			}
+			//Closes after first command is sent
 			channel.disconnect();
+			//Sets up for second command
 			String command2 = null;
+			//Different commands used if Centos or Ubuntu OS is used.
 			if  (localOS.equals("CENTOS"))
 			{
 				command2 = "sudo wget http://rpms.famillecollet.com/enterprise/remi-release-6.rpm && rpm -Uvh remi-release-6*.rpm && sudp yum -y update && sudo yum install memtester; memtester " + memeorytotal +" "+ memorytesterloops;
@@ -160,7 +165,9 @@ public class VMmemoryStress {
 
 			}
 			in1.close();
+			//Close after second command
 			channel2.disconnect();
+			//Close session after all commands are done
 			session.disconnect();
 			LoggerWrapper.myLogger.info( baos.toString());
 

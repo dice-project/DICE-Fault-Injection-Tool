@@ -7,12 +7,12 @@ public class VMDiskStress {
 
 	public void stressdisk(String host, String vmpassword, String memeorytotal,String loops, String sshkeypath) {
 		
+		//Calls OS checker to determine if Ubuntu or Centos os
 		OSChecker oscheck = new OSChecker();
 		oscheck.oscheck(host, vmpassword, sshkeypath);
 		String localOS = oscheck.OSVERSION;
 		LoggerWrapper.myLogger.info(localOS);
 
-		//String localOS = "CENTOS";
 		String command;
 		
 		if (localOS.equals("UBUNTU"))
@@ -50,7 +50,9 @@ public class VMDiskStress {
 			host = host.substring(host.indexOf('@') + 1);
 
 			Session session = jsch.getSession(user, host, 22);
-			  if (sshkeypath.equals("-no")) {
+			 //Used to determine if ssh key or password is proivded with command 
+ 
+			if (sshkeypath.equals("-no")) {
 				 session.setPassword(vmpassword);
 			  }
 			  else if (vmpassword.equals("-no"))
@@ -69,7 +71,7 @@ public class VMDiskStress {
 			session.connect();
 			LoggerWrapper.myLogger.info("Attempting to SSH to VM with ip " + host);
 				
-
+			//Opens channel for sending first command.
 			Channel channel = session.openChannel("exec");
 			((ChannelExec) channel).setCommand(command);
 			channel.setInputStream(null);
@@ -88,6 +90,7 @@ public class VMDiskStress {
 						break;
 					System.out.print(new String(tmp, 0, i));
 					info = new String(tmp, 0, i);
+					//Outputs responce for ssh connection
 					System.out.print(" Disk Stress Status : " + info);
 				}
 				if (channel.isClosed()) {
@@ -103,8 +106,11 @@ public class VMDiskStress {
 				}
 
 			}
+			//Closes after first command is sent
 			channel.disconnect();
+			//Sets up for second command
 			String command2 = null;
+			//Different commands used if Centos or Ubuntu OS is used.
 			if  (localOS.equals("CENTOS"))
 			{
 				command2 = "sudo yum install bonnie++; /usr/sbin/bonnie++ -d /tmp -r " + memeorytotal + " -x" + loops;
@@ -155,7 +161,9 @@ public class VMDiskStress {
 
 			}
 			in1.close();
+			//Close after second command
 			channel2.disconnect();
+			//Close session after all commands are done
 			session.disconnect();
 			LoggerWrapper.myLogger.info( baos.toString());
 

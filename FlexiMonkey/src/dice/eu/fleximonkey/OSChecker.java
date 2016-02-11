@@ -33,7 +33,8 @@ public class OSChecker {
 			host = host.substring(host.indexOf('@') + 1);
 
 			Session session = jsch.getSession(user, host, 22);
-			  if (sshkeypath.equals("-no")) {
+			 //Used to determine if ssh key or password is proivded with command 
+			if (sshkeypath.equals("-no")) {
 				 session.setPassword(vmpassword);
 			  }
 			  else if (vmpassword.equals("-no"))
@@ -47,7 +48,7 @@ public class OSChecker {
 			session.setConfig(config);
 			session.connect();
 			LoggerWrapper.myLogger.info("Attempting to SSH to VM for OS check with ip " + host);
-
+			// use command to check if ubuntu is OS
 			String command ="grep 'NAME=\"Ubuntu\"' /etc/*-release";
 					
 
@@ -70,6 +71,7 @@ public class OSChecker {
 						break;
 					System.out.print(new String(tmp, 0, i));
 					info = new String(tmp, 0, i);
+					//Output OS version to Log
 					System.out.print("OS version : " + info);
 				}
 				if (channel.isClosed()) {
@@ -86,7 +88,7 @@ public class OSChecker {
 
 			}
 			
-
+			//If Ubuntu is not found them assume its Centos
 			 if (info == null) {
 				 OSVERSION = "CENTOS";	
 				LoggerWrapper.myLogger.info("CENTOS OS");
@@ -99,7 +101,9 @@ public class OSChecker {
 			 
 
 			in.close();
+			//Close after command sent
 			channel.disconnect();
+			//Close session after all commands are done
 			session.disconnect();
 			LoggerWrapper.myLogger.info( baos.toString());
 
