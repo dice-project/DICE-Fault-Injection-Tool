@@ -15,6 +15,7 @@ Current User/VM level faults:
 * Stop service running on VM
 * Shutdown random VM from whitelist provided by user (Note the whitelist does not check if VM  exists or is a in a running state)
 * Call YCSB on VM running MongoDB to begin workload test.
+* Run JMeter plan
 
 ### CommandLineParameters:
 usage: CommandLineParameters
@@ -30,5 +31,6 @@ usage: CommandLineParameters
     > -n,--stressnetwork <host, vmpassword, iperfserver, time, sshkeypath> High bandwitdh usage of VM 
     > -d,--diskstress <host, vmpassword, n,memeorytotal, loops, sshkeypath> High Disk usage of VM 
     > -y,--ycsb <host, vmpassword, workloadname, threads, sshkeypath> Start ycsb workload on MongoDB db
+    > -j,--jmeter <hostm vmpassword,workloadname,planname,sshkeypath> Start pre-made Jmeter path
 
 
