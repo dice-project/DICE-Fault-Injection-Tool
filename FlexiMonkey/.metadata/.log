@@ -33,3 +33,199 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.
 
 !ENTRY org.eclipse.emf.ecore 2 0 2016-02-09 09:55:51.378
 !MESSAGE Both 'eu.cactosfp7.infrastructuremodels' and 'eu.cactosfp7.infrastructuremodels' register an extension parser for 'core'
+!SESSION 2016-02-24 17:06:11.275 -----------------------------------------------
+eclipse.buildId=4.5.1.M20150904-0015
+java.version=1.8.0_71
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -keyring /Users/darrenw/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -data /Users/darrenw/Desktop/DICE-Fault-Injection-Tool/FlexiMonkey -product org.eclipse.epp.package.java.product -keyring /Users/darrenw/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.emf.ecore 2 0 2016-02-24 17:06:14.313
+!MESSAGE Both 'eu.cactosfp7.identifier' and 'eu.cactosfp7.identifier' register a package for 'http://www.cactosfp7.eu/Identifier/1.0'
+
+!ENTRY org.eclipse.emf.ecore 2 0 2016-02-24 17:06:14.315
+!MESSAGE Both 'eu.cactosfp7.infrastructuremodels' and 'eu.cactosfp7.infrastructuremodels' register a package for 'http://www.cactosfp7.eu/PhysicalDCModel/ArchitectureType/1.0'
+
+!ENTRY org.eclipse.emf.ecore 2 0 2016-02-24 17:06:14.315
+!MESSAGE Both 'eu.cactosfp7.infrastructuremodels' and 'eu.cactosfp7.infrastructuremodels' register a package for 'http://www.cactosfp7.eu/LogicalDCModel/Hypervisor/1.0'
+
+!ENTRY org.eclipse.emf.ecore 2 0 2016-02-24 17:06:14.316
+!MESSAGE Both 'eu.cactosfp7.infrastructuremodels' and 'eu.cactosfp7.infrastructuremodels' register a package for 'http://www.cactosfp7.eu/LogicalDCModel/Core/1.0'
+
+!ENTRY org.eclipse.emf.ecore 2 0 2016-02-24 17:06:14.326
+!MESSAGE Both 'eu.cactosfp7.infrastructuremodels' and 'eu.cactosfp7.infrastructuremodels' register an extension parser for 'core'
+
+!ENTRY org.eclipse.ui 2 0 2016-02-24 17:06:14.832
+!MESSAGE Warnings while parsing the key bindings from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.bindings' extension point
+!SUBENTRY 1 org.eclipse.ui 2 0 2016-02-24 17:06:14.832
+!MESSAGE Cannot bind to an undefined command: plug-in='org.eclipse.ui.tests', id='org.eclipse.ui.tests.TestCommandId'
+!SUBENTRY 1 org.eclipse.ui 2 0 2016-02-24 17:06:14.832
+!MESSAGE Cannot bind to an undefined command: plug-in='org.eclipse.ui.tests', id='org.eclipse.ui.tests.TestCommandId'
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2016-02-24 17:06:14.907
+!MESSAGE Could not find element with id 'app.base'
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2016-02-24 17:06:14.910
+!MESSAGE Could not find element with id 'app.base.command'
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2016-02-24 17:06:33.143
+!MESSAGE Could not find element with id 'app.base'
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2016-02-24 17:06:33.145
+!MESSAGE Could not find element with id 'app.base.command'
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2016-02-24 17:06:33.147
+!MESSAGE Could not find element with id 'fragment.contributedWindow'
+
+!ENTRY org.eclipse.ui 4 4 2016-02-24 17:06:33.299
+!MESSAGE Invalid activity: missing a translatable name (contributed by 'org.eclipse.ui.tests')
+
+!ENTRY org.eclipse.ui 4 4 2016-02-24 17:06:33.299
+!MESSAGE Invalid activity: missing a unique identifier (contributed by 'org.eclipse.ui.tests')
+
+!ENTRY org.eclipse.ui 4 4 2016-02-24 17:06:33.348
+!MESSAGE Invalid category description: missing a translatable name (contributed by 'org.eclipse.ui.tests')
+
+!ENTRY org.eclipse.ui 4 4 2016-02-24 17:06:33.349
+!MESSAGE Invalid category description: has no ID (contributed by 'org.eclipse.ui.tests')
+
+!ENTRY org.eclipse.ui 4 4 2016-02-24 17:06:33.349
+!MESSAGE Invalid activity pattern binding: missing the pattern to be bound (contributed by 'org.eclipse.ui.tests')
+
+!ENTRY org.eclipse.ui 4 4 2016-02-24 17:06:33.349
+!MESSAGE Invalid activity requirement binding: missing ID of the required activity (contributed by 'org.eclipse.ui.tests')
+
+!ENTRY org.eclipse.ui 4 4 2016-02-24 17:06:33.349
+!MESSAGE Invalid category activity binding: missing the ID of the activity to bind (contributed by 'org.eclipse.ui.tests')
+
+!ENTRY org.eclipse.ui 2 0 2016-02-24 17:06:33.363
+!MESSAGE Expression activity cannot have requirements (id: org.eclipse.ui.tests.filter4.enabled)
+
+!ENTRY org.eclipse.ui 2 0 2016-02-24 17:06:33.364
+!MESSAGE Expression activity cannot be required (id: org.eclipse.ui.tests.filter7.enabled)
+
+!ENTRY org.eclipse.ui 2 2 2016-02-24 17:06:34.759
+!MESSAGE Could not parse value for theme color badColor3
+!STACK 0
+org.eclipse.jface.resource.DataFormatException: For input string: "1x"
+	at org.eclipse.jface.resource.StringConverter.asRGB(StringConverter.java:568)
+	at org.eclipse.ui.themes.ColorUtil.getColorValue(ColorUtil.java:174)
+	at org.eclipse.ui.internal.themes.ColorDefinition.getValue(ColorDefinition.java:111)
+	at org.eclipse.ui.internal.themes.ThemeElementHelper.installColor(ThemeElementHelper.java:305)
+	at org.eclipse.ui.internal.themes.ThemeElementHelper.populateRegistry(ThemeElementHelper.java:193)
+	at org.eclipse.ui.internal.Workbench$28.runWithException(Workbench.java:1748)
+	at org.eclipse.ui.internal.StartupThreading$StartupRunnable.run(StartupThreading.java:32)
+	at org.eclipse.swt.widgets.Synchronizer.syncExec(Synchronizer.java:186)
+	at org.eclipse.ui.internal.UISynchronizer.syncExec(UISynchronizer.java:145)
+	at org.eclipse.swt.widgets.Display.syncExec(Display.java:4781)
+	at org.eclipse.ui.internal.StartupThreading.runWithoutExceptions(StartupThreading.java:95)
+	at org.eclipse.ui.internal.Workbench.initializeApplicationColors(Workbench.java:1742)
+	at org.eclipse.ui.internal.Workbench.init(Workbench.java:1636)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2968)
+	at org.eclipse.ui.internal.Workbench.access$8(Workbench.java:2854)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:651)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:337)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:598)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:139)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:380)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:235)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:669)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:608)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1515)
+
+!ENTRY org.eclipse.core.net 1 0 2016-02-24 17:06:35.972
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.jface 2 0 2016-02-24 17:06:45.292
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2016-02-24 17:06:45.292
+!MESSAGE A conflict occurred for CTRL+5 K:
+Binding(CTRL+5 K,
+	ParameterizedCommand(Command(org.eclipse.ui.tests.keyModel.conflict1,Conflict1,
+		,
+		Category(org.eclipse.ui.tests.category.keyModel,Key Model,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@352a2660,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.dialog,,,system)
+Binding(CTRL+5 K,
+	ParameterizedCommand(Command(org.eclipse.ui.tests.keyModel.conflict2,Conflict2,
+		,
+		Category(org.eclipse.ui.tests.category.keyModel,Key Model,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1179c778,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.dialog,,,system)
+Binding(CTRL+5 K,
+	ParameterizedCommand(Command(org.eclipse.ui.tests.keyModel.conflict3,Conflict3,
+		,
+		Category(org.eclipse.ui.tests.category.keyModel,Key Model,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@f0c6326,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.dialog,,,system)
+
+!ENTRY org.eclipse.ui 2 2 2016-02-24 17:06:45.503
+!MESSAGE Invalid property category path: Test Category (bundle: org.eclipse.ui.tests, propertyPage: org.eclipse.ui.tests.and)
+
+!ENTRY org.eclipse.ui 2 2 2016-02-24 17:06:45.503
+!MESSAGE Invalid property category path: Test Category (bundle: org.eclipse.ui.tests, propertyPage: org.eclipse.ui.tests.or)
+
+!ENTRY org.eclipse.ui.workbench 4 2 2016-02-24 17:06:46.423
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.workbench".
+!STACK 0
+org.eclipse.swt.SWTException: Invalid thread access
+	at org.eclipse.swt.SWT.error(SWT.java:4491)
+	at org.eclipse.swt.SWT.error(SWT.java:4406)
+	at org.eclipse.swt.SWT.error(SWT.java:4377)
+	at org.eclipse.swt.widgets.Display.error(Display.java:1097)
+	at org.eclipse.swt.widgets.Display.createDisplay(Display.java:848)
+	at org.eclipse.swt.widgets.Display.create(Display.java:831)
+	at org.eclipse.swt.graphics.Device.<init>(Device.java:130)
+	at org.eclipse.swt.widgets.Display.<init>(Display.java:721)
+	at org.eclipse.swt.widgets.Display.<init>(Display.java:712)
+	at org.eclipse.swt.widgets.Display.getDefault(Display.java:1427)
+	at org.eclipse.oomph.setup.ui.SetupUIPlugin.performStartup(SetupUIPlugin.java:198)
+	at org.eclipse.oomph.setup.ui.EarlyStartup.earlyStartup(EarlyStartup.java:22)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.runEarlyStartup(EarlyStartupRunnable.java:90)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.run(EarlyStartupRunnable.java:68)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.ui.internal.Workbench$56.run(Workbench.java:2812)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.ui 4 4 2016-02-24 17:06:46.424
+!MESSAGE Unhandled Exception
+
+!ENTRY org.eclipse.oomph.setup.ui 4 0 2016-02-24 17:06:46.424
+!MESSAGE Unable to execute early startup code for an extension
+!STACK 0
+org.eclipse.swt.SWTException: Invalid thread access
+	at org.eclipse.swt.SWT.error(SWT.java:4491)
+	at org.eclipse.swt.SWT.error(SWT.java:4406)
+	at org.eclipse.swt.SWT.error(SWT.java:4377)
+	at org.eclipse.swt.widgets.Display.error(Display.java:1097)
+	at org.eclipse.swt.widgets.Display.createDisplay(Display.java:848)
+	at org.eclipse.swt.widgets.Display.create(Display.java:831)
+	at org.eclipse.swt.graphics.Device.<init>(Device.java:130)
+	at org.eclipse.swt.widgets.Display.<init>(Display.java:721)
+	at org.eclipse.swt.widgets.Display.<init>(Display.java:712)
+	at org.eclipse.swt.widgets.Display.getDefault(Display.java:1427)
+	at org.eclipse.oomph.setup.ui.SetupUIPlugin.performStartup(SetupUIPlugin.java:198)
+	at org.eclipse.oomph.setup.ui.EarlyStartup.earlyStartup(EarlyStartup.java:22)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.runEarlyStartup(EarlyStartupRunnable.java:90)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.run(EarlyStartupRunnable.java:68)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.ui.internal.Workbench$56.run(Workbench.java:2812)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 2 2 2016-02-24 17:06:46.695
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.epp.internal.logging.aeri.ide.Startup$1

@@ -1,3 +1,7 @@
 //org.eclipse.ui.commands/state/org.eclipse.ui.navigator.resources.nested.changeProjectPresentation/org.eclipse.ui.commands.radioState=false
+//org.eclipse.ui.commands/state/org.eclipse.ui.tests.radioStateCommand1/org.eclipse.ui.commands.radioState=value2
 PLUGINS_NOT_ACTIVATED_ON_STARTUP=org.eclipse.m2e.discovery;
+UIActivities.org.eclipse.activity5=true
+UIActivities.org.eclipse.activity6=true
+UIActivities.org.eclipse.activity7=true
 eclipse.preferences.version=1
