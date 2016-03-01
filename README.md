@@ -4,6 +4,10 @@ To access the VM level and issue commands the DICE tools use JSCH (http://www.jc
 When using any argument that requires VM password or SSHKeypath use "-no" for argument not used. 
 Example command: --stressmem 2 512m ubuntu@111.222.333.444 -no c://SSHKEYS/VMkey.key
 
+Supported OS:
+Ubuntu - Tested Ubuntu 14.0, 15.10
+Centos (With set Repo configured & wget installed) - Tested Centos 7
+
 
 Current User/VM level faults:
 * Shutdown random VM (Ignore tagged VM with "noshutdown" in random selection)
