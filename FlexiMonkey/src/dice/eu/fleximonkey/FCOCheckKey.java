@@ -23,6 +23,7 @@ import com.extl.jade.user.UserService;
 public class FCOCheckKey {
 	public ArrayList<String> listString = new ArrayList<String>();
 
+	//Lists VM keys
 	public void listvmkeys(String cloudusername, String cloudpassword,
 			String cloudapiurl, String cloudUUID, String serverUUID) {
 
